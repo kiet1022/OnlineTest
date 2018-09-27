@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('user', function() {
-    return view('admin.index');
+    return view('admin.member');
 });
