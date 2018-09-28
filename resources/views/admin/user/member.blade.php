@@ -10,6 +10,11 @@
     <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
   </ol>
 </nav>
+@if(session('success'))
+<div class="alert alert-success">
+    {{session('success')}}
+</div>
+@endif
 	<table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -50,7 +55,7 @@
                 @endif   
                 </td>
                 <td>{{$us->info->phone_number}}</td>
-                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Xóa</a></td>
+                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_user',['id'=>$us->id])}}"> Xóa</a></td>
                 <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
             </tr>
             @endforeach

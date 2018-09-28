@@ -24,6 +24,8 @@ Route::prefix('admin')->group(function() {
 	Route::get('adduser', 'AdminController@getViewAddUser')->name('get_add_user');
 	//add new user
 	Route::post('adduser','AdminController@addUser')->name('post_add_user');
+	//delete user
+	Route::get('deleteuser/{id}','AdminController@deleteUser')->name('delete_user');
 	//view news type
 	Route::get('newstypelist', 'AdminController@getNewsTypeList')->name('get_news_type_list');
 	//view add news type page

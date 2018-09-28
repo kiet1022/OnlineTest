@@ -49,5 +49,18 @@ class AdminController extends Controller
 
     	return view('admin.news.addnews');
     }
+
+    public function deleteUser($id){
+    	try{
+    		$user = User::find($id);
+    		$userinfo = UserInfo::where('id_user',$id);
+    		$userinfo->delete();
+    		$user->delete();
+    		return redirect()->back()->with('success','Xóa thành công');
+    	}catch(Exception $ex){
+    		return redirect()->back()->with('error','Xóa Thất bại');
+    	}
+
+    }
      
 }
