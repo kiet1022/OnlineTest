@@ -30,10 +30,10 @@
                     <a href="#memberMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Quản lý người dùng</a>
                     <ul class="collapse list-unstyled" id="memberMenu">
                         <li>
-                            <a href="admin/usermangement">Danh sách</a>
+                            <a href="{{route('get_user_list')}}">Danh sách</a>
                         </li>
                         <li>
-                            <a href="admin/adduser">Thêm người dùng</a>
+                            <a href="{{route('get_add_user')}}">Thêm người dùng</a>
                         </li>
                     </ul>
                 </li>
@@ -41,16 +41,16 @@
                     <a href="#newsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Quản lý tin tức</a>
                     <ul class="collapse list-unstyled" id="newsMenu">
                         <li>
-                            <a href="admin/newstypelist">Danh sách loại tin</a>
+                            <a href="{{route('get_news_type_list')}}">Danh sách loại tin</a>
                         </li>
                         <li>
-                            <a href="admin/addnewstype">Thêm loại tin</a>
+                            <a href="{{route('get_add_news_type')}}">Thêm loại tin</a>
                         </li>
                         <li>
-                            <a href="admin/newslist">Danh sách tin tức</a>
+                            <a href="{{route('get_news_list')}}">Danh sách tin tức</a>
                         </li>
                         <li>
-                            <a href="admin/addnews">Thêm tin tức</a>
+                            <a href="{{route('get_add_news')}}">Thêm tin tức</a>
                         </li>
                     </ul>
                 </li>

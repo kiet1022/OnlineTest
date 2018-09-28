@@ -25,39 +25,35 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($user as $us)
             <tr>
-                <td>Kiet1022</td>
-                <td>kiet1022@gmail.com</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>01646356275</td>
+                <td>{{$us->username}}</td>
+                <td>{{$us->email}}</td>
+                <td>
+                @if($us->level == 1) 
+                    {{"Admin"}}
+                @elseif($us->level == 2)
+                    {{"Giáo viên"}}
+                @else
+                    {{"Thành viên"}}
+                @endif
+                </td>
+                <td>{{$us->info->name}}</td>
+                <td>{{$us->info->date_of_birth}}</td>
+                <td>
+                @if($us->info->sex == 1) 
+                    {{"Nam"}}
+                @elseif($us->info->sex == 2)
+                    {{"Nữ"}}
+                @else
+                    {{"Khác"}}
+                @endif   
+                </td>
+                <td>{{$us->info->phone_number}}</td>
                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Xóa</a></td>
                 <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
             </tr>
-            <tr>
-                <td>Kiet1022</td>
-                <td>kiet1022@gmail.com</td>
-                <td>Admin</td>
-                <td>Lê Vy Nhật hiếu</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>01646356275</td>
-                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Xóa</a></td>
-                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
-            </tr>
-            <tr>
-                <td>Kiet1022</td>
-                <td>kiet1022@gmail.com</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>01646356275</td>
-                <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="#"> Xóa</a></td>
-                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
-            </tr>
+            @endforeach
         </tbody>
         <tfoot>
             <tr>

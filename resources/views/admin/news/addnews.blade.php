@@ -10,7 +10,7 @@
     <li class="breadcrumb-item active" aria-current="page">Thêm tin tức</li>
 </ol>
 </nav>
-<div class="col-lg-12">
+<div class="col-sm-8 offset-sm-2">
 <form>
   <div class="form-group">
     <label for="exampleFormControlInput1">Tiêu đề</label>
