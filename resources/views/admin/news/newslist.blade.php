@@ -43,10 +43,7 @@
         @foreach($news as $n)
         <tr align="center">
             <td>{{$n->id}}</td>
-            <td>{{$n->title}}
-                <p></p>
-                <img src="images/tintuc/{{$n->image}}" width="100px;">
-            </td>
+            <td>{{$n->title}}</td>
             <td>{{$n->summary}}</td>
             <td>{{$n->newstype->name}}</td>
             <td>20</td>

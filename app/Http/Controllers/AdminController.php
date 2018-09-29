@@ -40,7 +40,7 @@ class AdminController extends Controller
         return view('admin.news.editnewstype',compact('newtype'));
     }
     public function getNewsList(){
-        $news = News::all();
+        $news = News::with('newstype')->get();
         return view('admin.news.newslist', compact('news'));
     }
     public function getAddNews(){
