@@ -8,8 +8,8 @@
     <base href="{{asset('')}}">
     <title>@yield('title')</title>
     {{-- semantic UI --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css">
+{{--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css"> --}}
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -49,7 +49,7 @@
 <script src="assets/js/dataTables.bootstrap4.min.js"></script>
 {{-- semantic --}}
 {{-- <script src="assets/js/dataTables.semanticui.min.js"></script> --}}
-<script src="assets/js/semantic.min.js"></script>
+{{-- <script src="assets/js/semantic.min.js"></script> --}}
 <script type="text/javascript" language="javascript" src="assets/js/ckeditor/ckeditor.js" ></script>
 <script type="text/javascript">
     $(document).ready(function () {
