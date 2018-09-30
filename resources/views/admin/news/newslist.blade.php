@@ -10,6 +10,23 @@
     <li class="breadcrumb-item active" aria-current="page">Danh sách tin tức</li>
 </ol>
 </nav>
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{session('success')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{session('error')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
 <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
@@ -23,42 +40,17 @@
         </tr>
     </thead>
     <tbody>
+        @foreach($news as $n)
         <tr align="center">
-            <td>1</td>
-            <td>Học đại học
-                <p></p>
-                <img src="images/admin.jpg" width="100px;">
-            </td>
-            <td>Đi học đại học nè</td>
-            <td>Giáo dục</td>
+            <td>{{$n->id}}</td>
+            <td>{{$n->title}}</td>
+            <td>{{$n->summary}}</td>
+            <td>{{$n->newstype->name}}</td>
             <td>20</td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Xóa</a></td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
+            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_news',['id'=>$n->id])}}"> Xóa</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('get_edit_news',['id'=>$n->id])}}"> Sửa</a></td>
         </tr>
-        <tr align="center">
-            <td>1</td>
-            <td>Học đại học
-                <p></p>
-                <img src="images/admin.jpg" width="100px;">
-            </td>
-            <td>Đi học đại học nè</td>
-            <td>Giáo dục</td>
-            <td>20</td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Xóa</a></td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
-        </tr>
-        <tr align="center">
-            <td>1</td>
-            <td>Học đại học
-                <p></p>
-                <img src="images/admin.jpg" width="100px;">
-            </td>
-            <td>Đi học đại học nè</td>
-            <td>Giáo dục</td>
-            <td>20</td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Xóa</a></td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
-        </tr>
+        @endforeach
     </tbody>
     <tfoot>
         <tr>
