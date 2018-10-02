@@ -166,7 +166,7 @@ class AdminController extends Controller
             $news->save();
             return redirect()->back()->with('success','Sửa tin thành công');
         }catch(Exception $ex){
-            return redirect()->back()->with('error','Sửa tin thất bại');
+            return redirect()->back()->with('error',$ex->getMessage());
         }
     }
 

@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*',function($view){
+        view()->composer('admin.news.*',function($view){
             $newstype = NewsType::all();
             $view->with('newstype',$newstype);
         });

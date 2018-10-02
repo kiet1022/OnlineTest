@@ -61,3 +61,28 @@ Route::prefix('admin')->group(function() {
 	//Edit news type page
 	Route::post('editnews{id}','AdminController@postEditNews')->name('post_edit_news');
 });
+
+Route::prefix('pages')->group(function(){
+	//View home page
+	Route::get('home', 'PageController@getHomePage')->name('get_home_page');
+	//View News Home page
+	Route::get('newshome', 'PageController@getNewsPage')->name('get_news_page');
+	//View News detail
+	Route::get('{tenkhongdau}/{id}.html', 'PageController@getNewsDetail')->name('get_news_detail');
+	//View News Type
+	Route::get('type/{id}','PageController@getNewsType')->name('get_news_type');
+});
+
+
+Route::prefix('user')->group(function(){
+	//View register page
+	Route::get('register', 'UserController@getRegisterPage')->name('get_register_page');
+	//View Login page
+	Route::get('login', 'UserController@getLoginPage')->name('get_login_page');
+	//Register
+	Route::post('register', 'UserController@postRegister')->name('post_register');
+	//Login
+	Route::post('login', 'UserController@PostLogin')->name('post_login');
+	//Logout
+	Route::get('logout', 'UserController@Logout')->name('logout');
+});

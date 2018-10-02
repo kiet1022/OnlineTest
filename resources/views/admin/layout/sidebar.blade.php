@@ -1,6 +1,6 @@
 <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Welcome Dương Tuấn Kiệt</h3>
+            <div class="sidebar-header text-center">
+                <h4><strong>Welcome</strong><br><cite>Dương Tuấn Kiệt</cite></h4>
             </div>
 
             <ul class="list-unstyled components">

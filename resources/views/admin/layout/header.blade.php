@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark rounded">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="navbar-btn">
@@ -28,7 +28,7 @@
                     </div> -->
 
                     <div>
-                        <a class="ml-auto" data-toggle="dropdown" style="background: #fafafa;">
+                        <a class="ml-auto" data-toggle="dropdown" style="background: #29ca8e;">
                             <img src="images/admin.jpg" alt="" width="40" height="40" class="rounded-circle">
                         </a>
                     <div class="dropdown-menu dropdown-menu-right">

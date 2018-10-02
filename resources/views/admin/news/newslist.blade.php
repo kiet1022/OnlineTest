@@ -44,7 +44,7 @@
         <tr align="center">
             <td>{{$n->id}}</td>
             <td>{{$n->title}}</td>
-            <td>{{$n->summary}}</td>
+            <td>{!! $n->summary !!}</td>
             <td>{{$n->newstype->name}}</td>
             <td>20</td>
             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_news',['id'=>$n->id])}}"> Xóa</a></td>

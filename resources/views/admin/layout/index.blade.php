@@ -11,8 +11,8 @@
 {{--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css"> --}}
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style5.css">
 
@@ -20,8 +20,8 @@
 {{--     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script> --}}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+   {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+<link rel="stylesheet" href="assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
 
             @include('admin.layout.header')
         @yield('content')
-    </div>
+        </div>
 </div>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -50,7 +50,8 @@
 {{-- semantic --}}
 {{-- <script src="assets/js/dataTables.semanticui.min.js"></script> --}}
 {{-- <script src="assets/js/semantic.min.js"></script> --}}
-<script type="text/javascript" language="javascript" src="assets/js/ckeditor/ckeditor.js" ></script>
+<script src="assets/js/ckeditor/ckeditor.js" ></script>
+{{-- <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script> --}}
 <script type="text/javascript">
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {

@@ -81,13 +81,7 @@
 @endsection
 @section('script')
     <script>
-    ClassicEditor.create(document.querySelector('#exampleFormControlTextarea1')).catch( error => 
-        {
-            console.error( error );
-        });
-    ClassicEditor.create(document.querySelector('#exampleFormControlTextarea2')).catch( error => 
-        {
-            console.error( error );
-        });
+     CKEDITOR.replace( 'exampleFormControlTextarea2' );
+     CKEDITOR.replace( 'exampleFormControlTextarea1' );
 </script>
 @endsection
