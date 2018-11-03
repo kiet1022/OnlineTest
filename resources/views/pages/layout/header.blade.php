@@ -16,6 +16,7 @@
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="#home" style="padding: 0;"><a href="{{route('get_home_page')}}" class="smoothScroll">Trang chủ</a></a></li>
                          <li><a href="#news" style="padding: 0;"><a href="{{route('get_news_page')}}" class="smoothScroll">Tin tức</a></a></li>
+                         <li><a href="#forum" style="padding: 0;"><a href="{{route('get_forum_page')}}" class="smoothScroll">Diễn Đàn</a></a></li>
                          <li><a href="#about" class="smoothScroll">Về chúng tôi</a></li>
                          <li><a href="#contact" class="smoothScroll">Liên hệ</a></li>
                     </ul>
@@ -27,7 +28,7 @@
                     @endguest
                     @auth
                          <ul class="nav navbar-nav navbar-right">
-                              <li><a href="#register" style="padding: 0;"><a href="{{route('get_register_page')}}">{{Auth::user()->info->name}}</a></a></li>
+                              <li><a href="#register" style="padding: 0;"><a href="{{route('get_user_info_page',['id'=>Auth::user()->id])}}">{{Auth::user()->info->name}}</a></a></li>
                               <li><a href="#login" style="padding: 0;"><a href="{{route('logout')}}" class="smoothScroll">Đăng Xuất</a></a></li>
                          </ul>
                     @endauth

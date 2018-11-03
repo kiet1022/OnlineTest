@@ -16,4 +16,7 @@ class Posts extends Model
     {
     	return $this->belongsTo('App\Subjects','id_subject','id');
     }
+    public function comments(){
+    	return $this->hasMany('App\Comments','id_post','id');
+    }
 }

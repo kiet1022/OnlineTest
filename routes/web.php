@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return view('pages.home');
 });
 
 
@@ -71,10 +71,6 @@ Route::prefix('pages')->group(function(){
 	Route::get('{tenkhongdau}/{id}.html', 'PageController@getNewsDetail')->name('get_news_detail');
 	//View News Type
 	Route::get('type/{id}','PageController@getNewsType')->name('get_news_type');
-});
-
-
-Route::prefix('user')->group(function(){
 	//View register page
 	Route::get('register', 'UserController@getRegisterPage')->name('get_register_page');
 	//View Login page
@@ -83,6 +79,26 @@ Route::prefix('user')->group(function(){
 	Route::post('register', 'UserController@postRegister')->name('post_register');
 	//Login
 	Route::post('login', 'UserController@PostLogin')->name('post_login');
+	//Forum
+	Route::get('forum','PageController@getForumPage')->name('get_forum_page');
+	//Get topic detail
+	Route::get('forum/detail/{id}','PageController@getTopicDetail')->name('get_topic_detail');
+	//Post
+	Route::post('postintoforum','PageController@postToForum')->name('post_to_forum');
+	//Comment
+	Route::post('comment/{id_post}','PageController@commentToPost')->name('comment');
+	//Like
+	Route::get('like','AjaxController@Like')->name('like');
+	//Dislike
+	Route::get('dislike','AjaxController@Dislike')->name('dislike');
+	
+});
+
+
+Route::prefix('user')->group(function(){
 	//Logout
 	Route::get('logout', 'UserController@Logout')->name('logout');
+	//View user info
+	Route::get('info/{id}', 'UserController@getInfoPage')->name('get_user_info_page');
 });
+

@@ -94,4 +94,27 @@ function changeCatColor($color){
 	}
 	return $class;
 }
+
+function changeGender($gender){
+	$option = '';
+	if($gender == 0){
+		$option = '<option value="0" selected>Nam</option><option value="1">Nữ</option><option value="3">Khác</option>';
+	}if($gender == 1){
+		$option = '<option value="0">Nam</option><option value="1" selected>Nữ</option><option value="3">Khác</option>';
+	}if($gender == 2){
+		$option = '<option value="0">Nam</option><option value="1">Nữ</option><option value="3" selected>Khác</option>';
+	}
+	return $option;
+}
+function changeRole($role){
+	$result = '';
+	if($role == 1){
+		$result = 'Quản trị viên';
+	}if($role == 2){
+		$result = 'Giáo viên';
+	}if($role == 3){
+		$result = 'Thành viên';
+	}
+	return $result;
+}
 ?>

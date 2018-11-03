@@ -16,6 +16,13 @@ class UserController extends Controller
     public function getLoginPage(){
     	return view('pages.login');
     }
+    public function getInfoPage($id){
+        $user = User::find($id);
+        if($user){
+            $userinfo = $user->info;
+        }
+        return view('pages.user.userinfo',compact('user','userinfo'));
+    }
     //HANDLE
     public function postRegister(RegisterRequest $request){
     	try{
@@ -23,7 +30,7 @@ class UserController extends Controller
     		$userinfo = new UserInfo;
     		$user->username = 'test';
     		$user->email = $request->email;
-    		$user->level = 1;
+    		$user->level = 0;
     		$user->password = bcrypt($request->password);
     		$user->save();
 
@@ -37,7 +44,14 @@ class UserController extends Controller
     }
     public function PostLogin(Request $request){
     	if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-    		return redirect('pages/home');
+            if(Auth::user()->level == 1){
+                return route('get_user_list');
+            }else if(Auth::user()->level == 2){
+                return route('get_user_list');
+            }else{
+                return redirect()->route('get_user_info_page',['id'=>Auth::user()->id]);
+            }
+    		
     	}else{
     		return redirect()->back()->with('error', 'Sai tài khoản hoặc mật khẩu');
     	}
