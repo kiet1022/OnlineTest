@@ -118,6 +118,18 @@ Route::prefix('pages')->group(function(){
 	Route::get('like','AjaxController@Like')->name('like');
 	//Dislike
 	Route::get('dislike','AjaxController@Dislike')->name('dislike');
+	//Page quizz
+	Route::get('quizz','QuizzController@getQuizzPage')->name('get_quizz_page');
+	//do quizz
+	// Route::get('quizTest','QuizzController@get_quiz')->name('get_quiz');
+	Route::get('doQuiz','QuizzController@getQuiz')->name('get_quiz');
+	//load question
+	// Route::get('question/{id}','QuizzController@showQuestion')->name('question');
+
+	//get quizz detail
+	Route::get('getTestDetail/{id}','QuizzController@getTestDetail')->name('get_test_detail');
+	//get question of test
+	Route::get('getAllQuestionOfTest/{id}','QuizzController@getAllQuestionOfTest')->name('get_question');
 	
 });
 
