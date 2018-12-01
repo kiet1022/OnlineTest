@@ -12,4 +12,8 @@ class Questions extends Model
     {
     	return $this->belongsTo('App\User','owner','id');
     }
+
+    public function type(){
+    	return $this->belongsTo('App\QuestionsType','id_type','id');
+    }
 }

@@ -11,7 +11,7 @@
                             <a href="#">Danh sách</a>
                         </li>
                         <li>
-                            <a href="#">Thêm bài thi</a>
+                            <a href="{{route('get_add_new_test')}}">Thêm bài thi</a>
                         </li>
                     </ul>
                 </li>
@@ -19,10 +19,13 @@
                     <a href="#questionMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Quản lý câu hỏi</a>
                     <ul class="collapse list-unstyled" id="questionMenu">
                         <li>
-                            <a href="#">Danh sách</a>
+                            <a href="{{route('get_questions_types_list')}}">Chủ đề</a>
                         </li>
                         <li>
-                            <a href="#">Thêm câu hỏi</a>
+                            <a href="{{route('get_question_list')}}">Danh sách</a>
+                        </li>
+                        <li>
+                            <a href="{{route('get_add_new_question')}}">Thêm câu hỏi</a>
                         </li>
                     </ul>
                 </li>

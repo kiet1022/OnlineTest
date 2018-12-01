@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="{{asset('')}}">
     <title>@yield('title')</title>
     {{-- semantic UI --}}
@@ -13,6 +14,8 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/buttons.dataTables.min.css">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style5.css">
 
@@ -38,27 +41,38 @@
         </div>
 </div>
 
+    @yield('modal')
 <!-- jQuery CDN - Slim version (=without AJAX) -->
-<script src="assets/js/jquery-3.3.1.slim.min.js"></script>
+{{-- <script src="assets/js/jquery-3.3.1.slim.min.js"></script> --}}
+<script src="assets/js/jquery-3.3.1.min.js"></script>
 <!-- Popper.JS -->
 <script src="assets/js/popper.min.js"></script>
 <!-- Bootstrap JS -->
 <script src="assets/js/bootstrap.min.js"></script>
+
 {{-- Bootstrap DataTable --}}
 <script src="assets/js/jquery.dataTables.min.js"></script>
 <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+
 {{-- semantic --}}
 {{-- <script src="assets/js/dataTables.semanticui.min.js"></script> --}}
 {{-- <script src="assets/js/semantic.min.js"></script> --}}
 <script src="assets/js/ckeditor/ckeditor.js" ></script>
+<script src="assets/js/dataTables.select.min.js"></script>
+<script src="assets/js/dataTables.buttons.min.js"></script>
 {{-- <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script> --}}
 <script type="text/javascript">
     $(document).ready(function () {
+        $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+        
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
             $(this).toggleClass('active');
         });
-        $('#example').DataTable();
         @yield('documentready')
     });
 </script>

@@ -117,4 +117,29 @@ function changeRole($role){
 	}
 	return $result;
 }
+function changeCorrectAnswerColor($answer, $correctAnswer){
+	$result = '';
+	if($answer == $correctAnswer){
+		$result = 'data-toggle="tooltip" title="Đáp án đúng" data-placement="top" class="text-danger"';
+	}
+	return $result;
+}
+
+function changeSelectedCorrectAnswer($question){
+	$option = '';
+	if($question->a == $question->correct_answer){
+		$option = '<option value="A" selected>'.$question->a.'</option><option value="B">'.$question->b.'</option><option value="C">'.$question->c.'</option><option value="D">'.$question->d.'</option>';
+	}
+	if($question->b == $question->correct_answer){
+		$option = '<option value="A">'.$question->a.'</option><option value="B" selected>'.$question->b.'</option><option value="C">'.$question->c.'</option><option value="D">'.$question->d.'</option>';
+	}
+	if($question->c == $question->correct_answer){
+		$option = '<option value="A">'.$question->a.'</option><option value="B">'.$question->b.'</option><option value="C" selected>'.$question->c.'</option><option value="D">'.$question->d.'</option>';
+	}
+	if($question->d == $question->correct_answer){
+		$option = '<option value="A">'.$question->a.'</option><option value="B">'.$question->b.'</option><option value="C">'.$question->c.'</option><option value="D" selected>'.$question->d.'</option>';
+	}
+	return $option;
+}
+
 ?>

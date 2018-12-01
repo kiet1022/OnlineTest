@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function() {
 	// view Edit news type page
 	Route::get('edittype/{id}','AdminController@getEditNewsType')->name('get_edit_news_type');
 	//Edit news type page
-	Route::post('edittype{id}','AdminController@postEditNewsType')->name('post_edit_news_type');
+	Route::post('edittype/{id}','AdminController@postEditNewsType')->name('post_edit_news_type');
 
 
 	//view news list
@@ -60,6 +60,33 @@ Route::prefix('admin')->group(function() {
 	Route::get('editnews/{id}','AdminController@getEditNews')->name('get_edit_news');
 	//Edit news type page
 	Route::post('editnews{id}','AdminController@postEditNews')->name('post_edit_news');
+
+	//Vieww questions types list
+	Route::get('questiontypeslist','AdminController@getQuestionsTypesList')->name('get_questions_types_list');
+	//View add question type
+	Route::get('getaddnewquestiontype','AdminController@getAddNewQuestionType')->name('get_add_question_type');
+	//Add new question type
+	Route::post('postaddnewquestiontype', 'AdminController@postAddNewQuestionType')->name('post_add_new_question_type');
+	// view Edit question type page
+	Route::get('editquestiontype/{id}','AdminController@getEditQuestionType')->name('get_edit_question_type');
+	//Edit question type
+	Route::post('editquestiontype/{id}','AdminController@postEditQuestionType')->name('post_edit_question_type');
+	//delete question type
+	Route::get('deletequestiontype/{id}','AdminController@deleteQuestionType')->name('delete_question_type');
+
+
+	//view question list
+	Route::get('questionlist', 'AdminController@getQuestionList')->name('get_question_list');
+	Route::get('getaddnewques', 'AdminController@getAddNewQuestion')->name('get_add_new_question');
+	Route::post('postaddnewquest','AdminController@postAddNewQuestion')->name('post_add_new_question');
+	Route::get('deletequestion/{id}','AdminController@deleteQuestion')->name('delete_question');
+	Route::get('geteditquestion/{id}', 'AdminController@getEditQuestion')->name('get_edit_question');
+	Route::post('posteditquestion/{id}','AdminController@postEditQuestion')->name('post_edit_question');
+	Route::post('importquestionbyfile','AdminController@importQuestionByFile')->name('import_question_by_file');
+
+	//getaddtest
+	Route::get('addtest', 'AdminController@getAddNewTest')->name('get_add_new_test');
+	Route::post('addtest','AdminController@postAddNewTest')->name('post_add_new_test');
 });
 
 Route::prefix('pages')->group(function(){
