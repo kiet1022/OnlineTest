@@ -87,6 +87,9 @@ Route::prefix('admin')->group(function() {
 	//getaddtest
 	Route::get('addtest', 'AdminController@getAddNewTest')->name('get_add_new_test');
 	Route::post('addtest','AdminController@postAddNewTest')->name('post_add_new_test');
+	Route::get('testlist','AdminController@getTestList')->name('get_test_list');
+	Route::get('edittest/{id}','AdminController@getEditTest')->name('get_edit_test');
+	Route::post('edittest/{id}','AdminController@postEditTest')->name('post_edit_test');
 });
 
 Route::prefix('pages')->group(function(){
@@ -118,6 +121,10 @@ Route::prefix('pages')->group(function(){
 	Route::get('like','AjaxController@Like')->name('like');
 	//Dislike
 	Route::get('dislike','AjaxController@Dislike')->name('dislike');
+	//test list
+	Route::get('testlist', 'PageController@getTestList')->name('get_test_list_user');
+	//test detail
+	Route::get('testdetail/{id}','PageController@getTestDetail')->name('get_test_detail');
 	
 });
 

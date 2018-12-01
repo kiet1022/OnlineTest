@@ -87,6 +87,15 @@ class AdminController extends Controller
         $questions = Questions::all();
         return view('admin.test.addnewtest',compact('questions'));
     }
+
+    // public function getTestList(){
+    //     $tests = Tests::all();
+    //     return view('admin.test.testlist',compact('tests'));
+    // }
+    // public function getEditTest($id){
+    //     $oldTest = Tests::find($id);
+    //     return view('admin.test.edit_test',compact('oldTé'));
+    // }
     //INSERT
     public function addUser(AddUserRequest $request){
     	try{

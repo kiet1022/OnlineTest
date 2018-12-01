@@ -10,6 +10,8 @@ use App\NewsType;
 use App\Subjects;
 use App\Posts;
 use App\Comments;
+use App\Tests;
+use App\TestDetail;
 use Execption;
 class PageController extends Controller
 {
@@ -89,5 +91,15 @@ class PageController extends Controller
         }catch(Execption $ex){
             return redirect()->back()->with('error', $ex->getMessage());
         }
+    }
+
+    public function getTestList(){
+        $tests = Tests::paginate(6);
+        return view('pages.test.testlist',compact('tests'));
+    }
+
+    public function getTestDetail($id){
+        $testDetail = Tests::find($id)->detail;
+        return view('pages.test.detail',compact('testDetail'));
     }
 }

@@ -22,4 +22,8 @@ class Tests extends Model
     {
     	return $this->hasMany('App\TestReult','id_test','id');
     }
+    public function user()
+    {
+        return $this->belongsTo('App\User','owner','id');
+    }
 }

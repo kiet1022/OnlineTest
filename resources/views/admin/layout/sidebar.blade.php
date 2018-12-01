@@ -8,7 +8,7 @@
                     <a href="#testMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Quản lý bài thi</a>
                     <ul class="collapse list-unstyled" id="testMenu">
                         <li>
-                            <a href="#">Danh sách</a>
+                            <a href="{{route('get_test_list')}}">Danh sách</a>
                         </li>
                         <li>
                             <a href="{{route('get_add_new_test')}}">Thêm bài thi</a>
