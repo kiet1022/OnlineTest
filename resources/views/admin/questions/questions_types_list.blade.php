@@ -43,13 +43,13 @@
         </tr>
     </thead>
     <tbody>
-       @foreach($types as $type)
+    @foreach($types as $type)
        <tr>
         <td>{{$type->id}}</td>
         <td>{{$type->name}}</td>
         <td>{{$type->title}}</td>
-        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_question_type',['id'=>$type->id])}}"> Xóa</a></td>
-        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('get_edit_question_type',['id'=>$type->id])}}"> Sửa</a></td>
+        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_question_type',['id'=>$type->id]) }}"> Xóa</a></td>
+        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('get_edit_question_type',['id'=>$type->id] )}}"> Sửa</a></td>
     </tr>
     @endforeach
 </tbody>

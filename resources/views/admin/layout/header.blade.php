@@ -32,8 +32,8 @@
                             <img src="images/admin.jpg" alt="" width="40" height="40" class="rounded-circle">
                         </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">Dương Tuấn Kiệt</button>
-                        <button class="dropdown-item" type="button">Đăng xuất</button>
+                        <button class="dropdown-item" type="button">Dương Tuấn </button>
+                        <button class="dropdown-item" type="button"><a href="{{route('logout')}}" class="smoothScroll">Đăng Xuất</a></button>
                     </div>
                 </div>
             </div>

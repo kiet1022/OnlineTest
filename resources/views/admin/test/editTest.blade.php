@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @section('title')
-{{"Thêm bài thi"}}
+{{"Chỉnh sửa bài thi"}}
 @endsection
 @section('content')
 <nav aria-label="breadcrumb">
@@ -8,7 +8,7 @@
     <li class="breadcrumb-item"><a href="admin/usermangement" class="text-info">Trang chủ</a></li>
     <li class="breadcrumb-item" aria-current="page">Quản lý bài thi</li>
     <li class="breadcrumb-item" aria-current="page"><a href="{{route('get_questions_types_list')}}" class="text-info">Danh sách loại câu hỏi</a></li>
-    <li class="breadcrumb-item " aria-current="page">Thêm bài thi</li>
+    <li class="breadcrumb-item " aria-current="page">Chỉnh sửa</li>
 </ol>
 </nav>
     @if(count($errors)>0)
@@ -63,15 +63,15 @@
         <div id="home" class="container tab-pane active"><br>
             <div class="form-group">
                 <label for="ipnewstype">Tiêu đề bài thi</label>
-                <input type="text" class="form-control" id="idquestiontype" placeholder="Nhập tiêu đề bài thi" name='title'>
+                <input type="text" class="form-control" id="idquestiontype" placeholder="Nhập tiêu đề bài thi" name='title' value="{{$oldTest->title}}">
             </div>
             <div class="form-group">
                 <label for="ipnewstype">Số lượng câu hỏi</label>
-                <input type="number" class="form-control" id="idquestiontype" placeholder="Nhập số lượng câu hỏi" name='numberofquestion'>
+                <input type="number" class="form-control" id="idquestiontype" placeholder="Nhập số lượng câu hỏi" name='numberofquestion'value="{{$oldTest->number_question}}">
             </div>
             <div class="form-group" id="choseCorrectAnswer">
                 <label for="exampleFormControlSelect1">Thời lượng làm bài</label>
-                <select class="form-control" id="exampleFormControlSelect1" name='time'>
+                <select class="form-control" id="exampleFormControlSelect1" name='time' value="{{$oldTest->time}}">
                     <option value="20">20 phút</option>
                     <option value="30">30 phút</option>
                     <option value="60">60 phút</option>
@@ -304,7 +304,7 @@
             data[i] = dataTable[i];
         }
         $.ajax({
-            url:"{{ route('post_add_new_test') }}",
+            url:"{{ route('post_edit_test',['id'=>$oldTest->id]) }}",
             method:"POST",
             data: {
                 'title':title,
@@ -316,7 +316,7 @@
         .done(function(data){
             var html;
             if(data.success){
-                html = '<div class="alert alert-success alert-dismissible fade show" role="alert"> Thêm bài thi thành công <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div>';
+                html = '<div class="alert alert-success alert-dismissible fade show" role="alert"> Sửa bài thi thành công <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div>';
             }else if(!data.success){
                 html = '<div class="alert alert-danger alert-dismissible fade show" role="alert"> '+data.error+' <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div>';
             }

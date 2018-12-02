@@ -4,8 +4,37 @@
 @endsection
 @section('content')
 <div class="col-md-9" style="background: white; padding-top: 30px;">
+	@if(count($errors)>0)
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @foreach($errors->all() as $err)
+        {{$err}}<br>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @endforeach
+    </div>
+    @endif
+
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{session('success')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{session('error')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
 	<div class="col-md-10 col-md-offset-1" style="min-height: 437px;">
-		<form class="form-horizontal" action="/action_page.php">
+		<form class="form-horizontal" action="{{route('post_edit_userinfo',['id'=>$userinfo->id])}}" method="post">
+			@csrf
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="name">Họ Tên:</label>
 				<div class="col-sm-10">

@@ -74,7 +74,7 @@ Route::prefix('admin')->group(function() {
 	//delete question type
 	Route::get('deletequestiontype/{id}','AdminController@deleteQuestionType')->name('delete_question_type');
 
-
+Route::get('deleteTest/{id}','AdminController@deleteTest')->name('delete_test');
 	//view question list
 	Route::get('questionlist', 'AdminController@getQuestionList')->name('get_question_list');
 	Route::get('getaddnewques', 'AdminController@getAddNewQuestion')->name('get_add_new_question');
@@ -140,5 +140,6 @@ Route::prefix('user')->group(function(){
 	Route::get('logout', 'UserController@Logout')->name('logout');
 	//View user info
 	Route::get('info/{id}', 'UserController@getInfoPage')->name('get_user_info_page');
+	Route::post('edit/{id}', 'UserController@postEditInfo')->name('post_edit_userinfo');
 });
 

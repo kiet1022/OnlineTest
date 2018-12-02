@@ -26,8 +26,20 @@ class AdminController extends Controller
 {
     // GET VIEW
     public function getUserlist(){
-    	$user = User::all();
-    	return view('admin.user.member',compact('user'));
+        if(Auth::check())
+        {
+            if (Auth::user()->level == 1||Auth::user()->level == 2) {
+                $user = User::where('status',0)->get();
+                return view('admin.user.member',compact('user'));
+            }else{
+                return view('pages.home');
+            }
+            
+        }else{
+            return view('pages.login');
+            // return redirect('/');
+        }
+    	
     }
 
     public function getEditUser($id){
@@ -60,7 +72,7 @@ class AdminController extends Controller
         return view('admin.news.editnews',compact('news'));
     }
     public function getQuestionsTypesList(){
-        $types = QuestionsType::all();
+        $types = QuestionsType::where('status',0)->get();
         return view('admin.questions.questions_types_list',compact('types'));
     }
     public function getEditQuestionType($id){
@@ -68,15 +80,15 @@ class AdminController extends Controller
         return view('admin.questions.edit_questions_type',compact('type'));
     }
     public function getQuestionList(){
-        $questions = Questions::all();
+        $questions = Questions::where('status',0)->get();
         return view('admin.questions.questions_list',compact('questions'));
     }
     public function getAddNewQuestion(){
-        $question_type = QuestionsType::all();
+        $question_type = QuestionsType::where('status',0)->get();
         return view('admin.questions.addquestion',compact('question_type'));
     }
     public function getEditQuestion($id){
-        $question_type = QuestionsType::all();
+        $question_type = QuestionsType::where('status',0)->get();
         $question = Questions::find($id);
         return view('admin.questions.edit_a_question',compact('question','question_type'));
     }
@@ -84,33 +96,37 @@ class AdminController extends Controller
         return view('admin.questions.add_question_type');
     }
     public function getAddNewTest(){
-        $questions = Questions::all();
+        $questions = Questions::where('status',0)->get();
         return view('admin.test.addnewtest',compact('questions'));
     }
 
-    // public function getTestList(){
-    //     $tests = Tests::all();
-    //     return view('admin.test.testlist',compact('tests'));
-    // }
-    // public function getEditTest($id){
-    //     $oldTest = Tests::find($id);
-    //     return view('admin.test.edit_test',compact('oldTé'));
-    // }
+    public function getTestList(){
+        $tests = Tests::where('status',0)->get();
+        return view('admin.test.testlist',compact('tests'));
+    }
+    public function getEditTest($id){
+        $oldTest = Tests::find($id);
+        $questions = Questions::all();
+        return view('admin.test.editTest',compact('oldTest', 'questions'));
+    }
     //INSERT
     public function addUser(AddUserRequest $request){
     	try{
          $user = new User;
-         $user->username = $request->username;
+         // $user->username = $request->email;
+         $user->email = $request->email;
+         $user->level = $request->level;
          $user->password = bcrypt('123456');
+         $user->updated_by = Auth::user()->id;
          $user->save();
 
          $userinfo = new UserInfo;
          $userinfo->id_user = $user->id;
-         $userinfo->name = $user->username;
+         // $userinfo->name = $user->email;
          $userinfo->save();
-         return redirect()->back()->with('success','Thêm tài khoản thành công');
+         return redirect()->back()->with('success','Thêm tài khoản thành công. Mật khẩu là 123456');
          }catch(Exception $ex){
-          return redirect()->back()->with('error','Thêm tài khoản thất bại');
+          return redirect()->back()->with('error','Tài khoản đã tồn tại, vui lòng nhập địa chỉ email khác');
         }
     }
 
@@ -125,6 +141,7 @@ class AdminController extends Controller
             $newstype = new NewsType;
             $newstype->name = $request->typename;
             $newstype->title = changeTitle($request->typename);
+            // $newstype->updated_by = Auth::user()->id;
             $newstype->save();
             return redirect()->back()->with('success','Thêm loại tin thành công');
         }catch(Exception $ex){
@@ -194,6 +211,7 @@ class AdminController extends Controller
             }else{
                 return redirect()->back()->with('error', 'Vui lòng đăng nhập để thực hiện chức năng này');
             }
+            $ques->updated_by = Auth::user()->id;
             $ques->save();
             return redirect()->back()->with('success','Thêm câu hỏi thành công');
         }catch(Exception $ex){
@@ -205,6 +223,7 @@ class AdminController extends Controller
             $questype = new QuestionsType;
             $questype->name = $request->typename;
             $questype->title = changeTitle($request->typename);
+            $questype->updated_by = Auth::user()->id;
             $questype->save();
             return redirect()->back()->with('success','Thêm câu hỏi thành công');
         }catch(Exception $ex){
@@ -400,6 +419,30 @@ class AdminController extends Controller
             return redirect()->back()->with('error',$ex->getMessage());
         }
     }
+    public function postEditTest($id, Request $request){
+        try {
+            $test = Tests::find($id);
+            $test->title = $request->title;
+            $test->time = $request->time;
+            $test->number_question = $request->numberofquestion;
+            $test->mark = 100;
+            $test->updated_at=now()->times;
+            $test->owner = Auth::user()->id;
+            $test->save();
+            for($i = 0; $i< count($request->data);$i++){
+                $detail = new TestDetail;
+                $detail->id_test = $test->id;
+                $detail->id_question = $request->data[$i][1];
+                $detail->save();
+             }
+            $result['success'] = true;
+            return response()->json($result);
+        } catch (Exception $e) {
+            $result['success'] = false;
+            $result['error'] = $e->getMessage();
+            return response()->json($result);
+        }
+    }
 
     //DELETE
     public function deleteNewsType($id){
@@ -418,7 +461,22 @@ class AdminController extends Controller
             if($news->image != ""){
                 unlink("images/tintuc/".$news->image);
             }
-            $news->delete();
+            // $news->delete();
+            $news->status=1;
+            $news->updated_at=now()->timestamp;
+            $news->save();
+            return redirect()->back()->with('success','Xóa tin thành công'); 
+        }catch(Exception $ex){
+            return redirect()->back()->with('error','Xóa tin thất bại');
+        }
+    }
+    public function deleteTest($id){
+        try{
+            $test = Tests::find($id);
+            $test->status=1;
+            $test->updated_at=now()->timestamp;
+            $test->updated_by = Auth::user()->id;
+            $test->save();
             return redirect()->back()->with('success','Xóa tin thành công'); 
         }catch(Exception $ex){
             return redirect()->back()->with('error','Xóa tin thất bại');
@@ -427,9 +485,13 @@ class AdminController extends Controller
     public function deleteUser($id){
         try{
           $user = User::find($id);
-          $userinfo = UserInfo::where('id_user',$id);
-          $userinfo->delete();
-          $user->delete();
+          // $userinfo = UserInfo::where('id_user',$id);
+          // $userinfo->delete();
+          // $user->delete();
+          $user->status=1;
+          $user->updated_at=now();
+          $user->updated_by = Auth::user()->id;
+          $user->save();
           return redirect()->back()->with('success','Xóa thành công');
         }catch(Exception $ex){
           return redirect()->back()->with('error','Xóa Thất bại');
@@ -437,19 +499,34 @@ class AdminController extends Controller
     }
     public function deleteQuestionType($id){
         try{
-            $questions = Questions::where('id_type',$id);
-            $questions->delete();
+            $questions = Questions::where('id_type',$id)->get();
+            // $questions->delete();
+            // return $questions;
+            foreach ($questions as $question) {
+                $question->status=1;
+                $question->updated_at=now();
+                $question->save();
+            }
+            
             $questionstype = QuestionsType::find($id);
-            $questionstype->delete();
+            $questionstype->status=1;
+            $questionstype->updated_at=now();
+            $questionstype->updated_by = Auth::user()->id;
+            $questionstype->save();
+            // $questionstype->delete();
             return redirect()->back()->with('success','Xóa thành công');
         }catch(Exception $ex){
-            return redirect()->back()->with('error','Xóa Thất bại');
+            return redirect()->back()->with('error',$ex->getMessage());
         }
     }
     public function deleteQuestion($id){
         try{
             $old = Questions::find($id);
-            $old->delete();
+            // $old->delete();
+            $old->status=1;
+            $old->updated_at=now()->timestamp;
+            $old->updated_by = Auth::user()->id;
+            $old->save();
             return redirect()->back()->with('success','Xóa thành công');
         }catch(Exception $ex){
             return redirect()->back()->with('error','Xóa Thất bại');

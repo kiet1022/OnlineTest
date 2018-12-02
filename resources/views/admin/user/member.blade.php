@@ -60,18 +60,5 @@
             </tr>
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Loại tài khoản</th>
-                <th>Họ Tên</th>
-                <th>Ngày sinh</th>
-                <th>Giới tính</th>
-                <th>SĐT</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </tfoot>
     </table>
 @endsection

@@ -34,21 +34,21 @@
     @csrf
     <div class="form-group">
       <label for="ipusname">Username</label>
-      <input type="text" class="form-control" id="ipusname" aria-describedby="emailHelp" placeholder="Nhập Username" name="username">
-      <small id="emailHelp" class="form-text text-muted">Username phải có ít nhất 6 kí tự</small>
+      <input type="text" class="form-control" id="ipusname" aria-describedby="emailHelp" placeholder="Địa chỉ Email" name="email">
+      <small id="emailHelp" class="form-text text-muted">Địa chỉ Email </small>
   </div>
   <div class="form-group">
       <label for="exampleFormControlSelect1">Phân quyền</label>
       <select class="form-control" id="exampleFormControlSelect1" name="level">
         <option value="1">Quản trị viên</option>
         <option value="2">Giáo viên</option>
-        <option value="0">Thành viên</option>
+        <option value="3">Thành viên</option>
     </select>
 </div>
 <button type="submit" class="btn btn-primary">Đồng ý</button>
 </form>
-<div class="alert alert-info mt-3 text-center" role="alert">
+<!-- <div class="alert alert-info mt-3 text-center" role="alert">
     Sau khi tạo thành công tài khoản mật khẩu mặt định của tài khoản là 123456
-</div>
+</div> -->
 </div>
 @endsection

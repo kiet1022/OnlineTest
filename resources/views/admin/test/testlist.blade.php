@@ -58,8 +58,8 @@
         <td>{{$test->time}} phút</td>
         <td>{{$test->user->username}}</td>
         <td>{{$test->created_at}}</td>
-        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_question',['id'=>$test->id])}}"> Xóa</a></td>
-        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('get_edit_question',['id'=>$test->id])}}"> Sửa</a></td>
+        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_test',['id'=>$test->id])}}"> Xóa</a></td>
+        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('get_edit_test',['id'=>$test->id])}}"> Sửa</a></td>
     </tr>
     @endforeach
 </tbody>
