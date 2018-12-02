@@ -26,4 +26,22 @@ class TestController extends Controller
         $testDetail = Tests::find($id)->detail;
         return view('pages.test.detail',compact('testDetail'));
     }
+
+    public function submitAttempt($idtest, Request $re){
+        $attemp = $re;
+        $test = Tests::find($idtest);
+        $testDetail = $test->detail;
+        $markPerQuestion = 100/count($testDetail);
+        $totalMark = 0;
+        for($i = 0; $i < count($testDetail);$i++){
+            if(empty($re->answer_for_question_[$i])){
+                $totalMark+=0;
+            }else {
+                if($testDetail[$i]->question->correct_answer == $re->answer_for_question_[$i]){
+                $totalMark += $markPerQuestion;
+                }
+            }
+        }
+        return view('pages.test.test_result',compact('totalMark','testDetail','attemp'));
+    }
 }

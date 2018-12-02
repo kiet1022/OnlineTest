@@ -93,3 +93,18 @@ h1{
 .clock{
 	text-align: center;
 }
+
+.mark_result{
+	color: orange; 
+	border-bottom: 2px solid red;
+	text-align: center;
+}
+
+.panel-success>.panel-heading {
+    color: #fff;
+    background-color: #29ca8e !important;
+    border-color: #d6e9c6;
+}
+.panel-heading{
+	text-align: center;
+}

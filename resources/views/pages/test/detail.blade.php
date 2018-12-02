@@ -43,30 +43,32 @@
     </div>
     
     <div class="col-md-offset-1 col-md-10 test-content">
-      <form action="#" method="POST">     {{--    
+      <form action="{{route('submit_attempt',['idtest'=>$testDetail[1]->id_test])}}" method="POST">
+        @csrf     {{--    
         @foreach($testDetail as $detail) --}}
-        @for($i = 1; $i<count($testDetail);$i++)
-        <div class="form-group"><h4>{!!$i.'. '!!}{{$testDetail[$i]->question->content}}</h4></div>
+        @for($i = 0; $i < count($testDetail);$i++)
+        <div class="form-group"><h4>{!!($i+1).'. '!!}{{$testDetail[$i]->question->content}}</h4></div>
         <div class="form-group question-content">
             <p>
-                <input type="radio" {!!'id="answer-for-question-'.$i.'-A"'!!} {!!'name="answer-for-question-'.$i.'"'!!}>
+                <input type="radio" {!!'id="answer-for-question-'.$i.'-A"'!!} {!!'name="answer_for_question_['.$i.']"'!!} {!!'value="'.$testDetail[$i]->question->a.'"'!!}>
                 <label {!!'for="answer-for-question-'.$i.'-A"'!!}">{{$testDetail[$i]->question->a}}</label><span><i class="fa fa-close"></i></span>
             </p>
             <p>
-                <input type="radio" {!!'id="answer-for-question-'.$i.'-B"'!!} {!!'name="answer-for-question-'.$i.'"'!!}>
+                <input type="radio" {!!'id="answer-for-question-'.$i.'-B"'!!} {!!'name="answer_for_question_['.$i.']"'!!} {!!'value="'.$testDetail[$i]->question->b.'"'!!}>
                 <label {!!'for="answer-for-question-'.$i.'-B"'!!}>{{$testDetail[$i]->question->b}}</label><span><i class="fa fa-check"></i></span>
             </p>
             <p>
-                <input type="radio" {!!'id="answer-for-question-'.$i.'-C"'!!} {!!'name="answer-for-question-'.$i.'"'!!}>
+                <input type="radio" {!!'id="answer-for-question-'.$i.'-C"'!!} {!!'name="answer_for_question_['.$i.']"'!!} {!!'value="'.$testDetail[$i]->question->c.'"'!!}>
                 <label {!!'for="answer-for-question-'.$i.'-C"'!!}>{{$testDetail[$i]->question->c}}</label>
             </p>
             <p>
-                <input type="radio" {!!'id="answer-for-question-'.$i.'-D"'!!} {!!'name="answer-for-question-'.$i.'"'!!}>
+                <input type="radio" {!!'id="answer-for-question-'.$i.'-D"'!!} {!!'name="answer_for_question_['.$i.']"'!!} {!!'value="'.$testDetail[$i]->question->d.'"'!!}>
                 <label {!!'for="answer-for-question-'.$i.'-D"'!!}>{{$testDetail[$i]->question->d}}</label>
             </p>
         </div>
         @endfor
         {{-- @endforeach --}}
+        <button type="submit" class="btn btn-success">Nộp bài</button>
     </form>
 </div>
 </div>
@@ -125,11 +127,12 @@ else {
 }
 </script> --}}
 <script> 
-  
-//var deadline = new Date("dec 31, 2018 15:37:25").getTime(); 
+  function countdownTimer(){
+    //var deadline = new Date("dec 31, 2018 15:37:25").getTime(); 
   var hours = 1;
   var minutes = 59;
   var seconds = 10;
+  document.getElementById('btnct').setAttribute('disabled', 'disabled');
 var x = setInterval(function() { 
   
 //var now = new Date().getTime(); 
@@ -155,5 +158,6 @@ if (t < 0) {
         document.getElementById("minute").innerHTML ='0' ;  
         document.getElementById("second").innerHTML = '0'; } 
 }, 1000); 
+  }
 </script> 
 @endsection

@@ -129,6 +129,10 @@ Route::prefix('test')->group(function(){
 	Route::get('testlist', 'TestController@getTestList')->name('get_test_list_user');
 	//test detail
 	Route::get('testdetail/{id}','TestController@getTestDetail')->name('get_test_detail');
+	//Submit attemp
+	Route::post('submittest/{idtest}','TestController@submitAttempt')->name('submit_attempt');
+	//Show test result
+	//Route::get('result/{idtest}/{iduser}','TestController@getTestResult')->name('get_test_result');
 });
 
 Route::prefix('user')->group(function(){

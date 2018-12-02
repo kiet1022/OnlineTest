@@ -142,5 +142,21 @@ function changeSelectedCorrectAnswer($question){
 	return $option;
 }
 
+function checkYourAnswer($option, $answer){
+	$result = "disabled";
+	if($answer == $option) {
+		$result = "checked";
+	}
+	return $result;
+}
+
+function checkCorrectQuestion($answer, $corect){
+	$result ="";
+	if($answer == $corect){
+		$result = '<span style="color: #29ca8e; margin-left: 10px;"><i class="fa fa-check"></i></span>';
+	}
+	return $result;
+}
+
 
 ?>
