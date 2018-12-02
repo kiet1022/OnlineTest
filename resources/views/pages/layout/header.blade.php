@@ -19,7 +19,7 @@
                          <li><a href="#forum" style="padding: 0;"><a href="{{route('get_forum_page')}}" class="smoothScroll">Diễn Đàn</a></a></li>
                          <li><a href="#about" class="smoothScroll">Về chúng tôi</a></li>
                          <li><a href="#contact" class="smoothScroll">Liên hệ</a></li>
-                         <li><a href="#" style="padding: 0;"><a href="{{route('get_quizz_page')}}" class="smoothScroll">Vào Thi</a></a></li>
+                         {{-- <li><a href="#" style="padding: 0;"><a href="{{route('get_quizz_page')}}" class="smoothScroll">Vào Thi</a></a></li> --}}
 
                     </ul>
                     @guest

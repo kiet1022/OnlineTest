@@ -92,14 +92,4 @@ class PageController extends Controller
             return redirect()->back()->with('error', $ex->getMessage());
         }
     }
-
-    public function getTestList(){
-        $tests = Tests::paginate(6);
-        return view('pages.test.testlist',compact('tests'));
-    }
-
-    public function getTestDetail($id){
-        $testDetail = Tests::find($id)->detail;
-        return view('pages.test.detail',compact('testDetail'));
-    }
 }

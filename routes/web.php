@@ -121,13 +121,15 @@ Route::prefix('pages')->group(function(){
 	Route::get('like','AjaxController@Like')->name('like');
 	//Dislike
 	Route::get('dislike','AjaxController@Dislike')->name('dislike');
-	//test list
-	Route::get('testlist', 'PageController@getTestList')->name('get_test_list_user');
-	//test detail
-	Route::get('testdetail/{id}','PageController@getTestDetail')->name('get_test_detail');
 	
 });
 
+Route::prefix('test')->group(function(){
+	//test list
+	Route::get('testlist', 'TestController@getTestList')->name('get_test_list_user');
+	//test detail
+	Route::get('testdetail/{id}','TestController@getTestDetail')->name('get_test_detail');
+});
 
 Route::prefix('user')->group(function(){
 	//Logout
