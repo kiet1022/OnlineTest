@@ -20,7 +20,7 @@ class Tests extends Model
 
     public function result()
     {
-    	return $this->hasMany('App\TestReult','id_test','id');
+    	return $this->hasMany('App\TestResult','id_test','id');
     }
     public function user()
     {

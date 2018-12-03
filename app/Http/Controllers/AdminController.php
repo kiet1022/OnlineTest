@@ -268,6 +268,9 @@ class AdminController extends Controller
                     if(!is_null($row['Correct'])){
                         $question->correct_answer = $row['Correct'];
                     }
+                    if(!is_null($row['Status'])){
+                        $question->status = $row['Status'];
+                    }
                     $question->owner = Auth::user()->id;
                     $question->save();
                 }

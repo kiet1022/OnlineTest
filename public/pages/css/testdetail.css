@@ -50,10 +50,11 @@
 }
 
 .test-content{
-	border: 1px solid #cdcccc;
+	border: 2px solid #00bf96;
 	border-radius: 20px;
 	padding: 25px;
 	margin-bottom: 20px;
+	background-color: white;
 }
 .question-content{
 	border-bottom: 2px solid #29ca8e;
@@ -76,7 +77,8 @@ h1{
     font-size: 30px;
     background: #00bf96;
     border: 3px solid #00bf96;
-    border-radius: 5px; 
+    border-radius: 5px;
+    text-align: right;
 } 
 #clockdiv > div{ 
     /*padding: 10px; */
@@ -111,5 +113,11 @@ h1{
     border-color: #d6e9c6;
 }
 .panel-heading{
+	text-align: center;
+}
+.content{
+	background-color: #ecf0f1;
+}
+#button{
 	text-align: center;
 }

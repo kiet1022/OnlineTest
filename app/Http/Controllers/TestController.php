@@ -19,7 +19,7 @@ use Execption;
 class TestController extends Controller
 {
 	public function getTestList(){
-        $tests = Tests::paginate(6);
+        $tests = Tests::where('status',0)->paginate(6);
         return view('pages.test.testlist',compact('tests'));
     }
 

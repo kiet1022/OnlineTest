@@ -6,10 +6,18 @@
 <link rel="stylesheet" href="pages/css/testdetail.css">
 @endsection
 @section('content')
-<div {{-- style="text-align: center;" --}}>
+<section style="padding-top: 20px; padding-bottom: 20px;" class="content">
   
   <div class="container">
-    <div class="panel panel-success" style="margin-top: 35px;">
+              {{-- breadcrumb --}}
+            <ol class="breadcrumb" style="margin-bottom: 0;background-color: #ffffff; border-left: 5px solid #29ca8e;">
+                <li><a href="{{ route('get_home_page') }}" class="text-info">Trang chủ</a></li>
+                <li><a href="{{ route('get_test_list_user') }}" class="text-info">Bài thi</a></li>
+                <li class="active"><a href="{{route('get_test_detail',['id'=>$info['test']->id])}}">{{ $info['test']->title }}</a></li>
+                <li class="text-info">Kết quả thi</li>
+            </ol>
+            {{-- breadcrumb --}}
+    <div class="panel panel-success" style="margin-top: 15px;">
     <div class="panel-heading"><h5><strong>Kết quả</strong></h5></div>
     <div class="panel-body">
       {{-- show total mark end date join --}}
@@ -28,7 +36,7 @@
           </div>
           <div class="row">
             <div class="col-md-6" style="text-align: right;"><h4>Thời gian làm bài:</h4></div>
-            <div class="col-md-6" style="text-align: left;"><h4>{{$info['min']}} phút {{$info['min']}} giây</h4></div>
+            <div class="col-md-6" style="text-align: left;"><h4>{{$info['min']}} phút {{$info['sec']}} giây</h4></div>
           </div>
         </div>
       </div>
@@ -125,5 +133,5 @@
    {{--  <div>{{$testDetail->links()}}</div> --}}
 </div>
   </div>
-</div>
+</section>
 @endsection

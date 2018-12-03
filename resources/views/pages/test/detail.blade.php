@@ -6,24 +6,36 @@
 <link rel="stylesheet" href="pages/css/testdetail.css">
 @endsection
 @section('content')
-
+<section style="padding-top: 20px; padding-bottom: 20px;" class="content">
 <div class="container">
+            {{-- breadcrumb --}}
+            <ol class="breadcrumb" style="margin-bottom: 0;background-color: #ffffff; border-left: 5px solid #29ca8e;">
+                <li><a href="{{ route('get_home_page') }}" class="text-info">Trang chủ</a></li>
+                <li><a href="{{ route('get_forum_page') }}" class="text-info">Bài thi</a></li>
+                <li class="active">{{ $test->title }}</li>
+            </ol>
+            {{-- breadcrumb --}}
     <div class="panel-body text-center">
-        <button class="btn btn-primary btn-lg" id="btnct" onclick="countdownTimer()">
-            <i class="fa fa-play" aria-hidden="true"></i> Bắt đầu làm bài
-        </button>
+
     </div>
     
-    <div class="col-md-offset-1 col-md-10 test-content">
-        <div class="clock" style="overflow-y: scroll; height: 100px;">
-            <div id="clockdiv">
+    <div class="col-md-12 test-content">
+        <div style="overflow-y: scroll; height: 100px;">
+            <div class="col-md-6">
+                <button class="btn btn-primary btn-lg" id="btnct" onclick="countdownTimer()">
+                    <i class="fa fa-play" aria-hidden="true"></i> Bắt đầu làm bài
+                </button>
+            </div>
+            <div class="col-md-6 clock">
+                <div id="clockdiv">
                 <div>
-                    <span class="minutes" id="minute">{{showMinutes($test['time'])}}</span>
+                    <span class="minutes" id="minute">{{showMinutes($test->time)}}</span>
                 </div>
                 <div>:</div>
                 <div>
                     <span class="seconds" id="second">00</span>
                 </div>
+            </div>
             </div>
         </div>
       <form action="{{route('submit_attempt',['idtest'=>$testDetail[1]->id_test])}}" method="POST">
@@ -58,6 +70,7 @@
 </div>
 {{-- <div>{{$testDetail->links}}</div> --}}
 </div>
+</section>
 @endsection
 @section('script')
 <script>

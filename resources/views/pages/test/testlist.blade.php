@@ -44,7 +44,7 @@
 								</div>
 							</div>
 							<div class="posttext pull-left">
-								<h2><a href="{{ route('get_topic_detail',['id'=>$p->id]) }}">{{ $p->title }}</a></h2>
+								<h2><a href="{{ route('get_test_detail',['id'=>$p->id]) }}">{{ $p->title }}</a></h2>
 								<p>Thời gian làm bài: {{ $p->time }} phút</p>
 								<p>Số lượng câu hỏi: {{$p->number_question}}</p>
 								<p>Điểm tối đa: {{$p->mark}}</p>
@@ -54,7 +54,7 @@
 						<div class="postinfo pull-left">
 							<div class="comments">
 								<div class="commentbg">
-									{{$p->time}}
+									{{$p->participant_number}}
 									<div class="mark"></div>
 								</div>
 							</div>

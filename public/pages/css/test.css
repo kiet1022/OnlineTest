@@ -423,9 +423,9 @@
      -webkit-transition:0.2s opacity;
      transition:0.2s opacity;
 }
- .post {
+/* .post {
      margin-bottom: 40px;
-}
+}*/
  .post .post-img {
      display: block;
      -webkit-transition: 0.2s opacity;

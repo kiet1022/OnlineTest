@@ -12,7 +12,16 @@
 */
 
 Route::get('/', function () {
-	return view('pages.home');
+	//return view('pages.home');
+	$quess = App\Questions::all();
+	foreach ($quess as $q) {
+		$q->a = trim($q->a);
+		$q->b = trim($q->b);
+		$q->c = trim($q->c);
+		$q->d = trim($q->d);
+		$q->correct_answer = trim($q->correct_answer);
+		$q->save();
+	}
 });
 
 
