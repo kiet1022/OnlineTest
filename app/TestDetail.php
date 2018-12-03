@@ -10,7 +10,7 @@ class TestDetail extends Model
 
     public function test()
     {
-    	return $this->belongsTo('App\Test','id_test','id');
+    	return $this->belongsTo('App\Tests','id_test','id');
     }
     public function question()
     {

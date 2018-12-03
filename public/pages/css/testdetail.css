@@ -53,6 +53,7 @@
 	border: 1px solid #cdcccc;
 	border-radius: 20px;
 	padding: 25px;
+	margin-bottom: 20px;
 }
 .question-content{
 	border-bottom: 2px solid #29ca8e;
@@ -66,24 +67,28 @@ h1{
   margin: 40px 0px 20px; 
 } 
  #clockdiv{ 
-    font-family: sans-serif; 
-    color: #fff; 
-    display: inline-block; 
-    font-weight: 100; 
-    text-align: center; 
-    font-size: 30px; 
+    padding: 3px;
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+    background: #00bf96;
+    border: 3px solid #00bf96;
+    border-radius: 5px; 
 } 
 #clockdiv > div{ 
-    padding: 10px; 
+    /*padding: 10px; */
     border-radius: 3px; 
     background: #00BF96; 
     display: inline-block; 
 } 
 #clockdiv div > span{ 
-    padding: 15px; 
-    border-radius: 3px; 
-    background: #00816A; 
-    display: inline-block; 
+    /*padding: 15px; */
+    border-radius: 3px;
+    background: #00bf96;
+    display: inline-block;
 } 
 /*.smalltext{ 
     padding-top: 5px; 
@@ -91,7 +96,7 @@ h1{
 } */
 
 .clock{
-	text-align: center;
+	text-align: right;
 }
 
 .mark_result{

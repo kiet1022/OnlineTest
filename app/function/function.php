@@ -158,5 +158,27 @@ function checkCorrectQuestion($answer, $corect){
 	return $result;
 }
 
+function showHours($time){
+	$result = 0;
+	if($time == 60){
+		$result = 1;
+	}
+	return $result;
+}
+
+function showMinutes($time){
+	$result = 0;
+	if($time == 60){
+		$result = 60;
+	}
+	if($time = 30){
+		$result = 30;
+	}
+	if($time = 20){
+		$result = 20;
+	}
+	return $result;
+}
+
 
 ?>
