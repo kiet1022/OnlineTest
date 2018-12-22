@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
@@ -15,13 +16,6 @@ class UserController extends Controller
     }
     public function getLoginPage(){
     	return view('pages.login');
-    }
-    public function getInfoPage($id){
-        $user = User::find($id);
-        if($user){
-            $userinfo = $user->info;
-        }
-        return view('pages.user.userinfo',compact('user','userinfo'));
     }
     //HANDLE
     public function postRegister(RegisterRequest $request){
@@ -45,41 +39,17 @@ class UserController extends Controller
     public function PostLogin(Request $request){
     	if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             if(Auth::user()->level == 1){
-                return redirect()->route('get_user_list');
-            }else if(Auth::user()->level == 2){
-                return redirect()->route('get_user_list');
-            }else{
+                return redirect()->route('get_admin_home_page');
+            }else {
                 return redirect()->route('get_user_info_page',['id'=>Auth::user()->id]);
             }
-    		
     	}else{
     		return redirect()->back()->with('error', 'Sai tài khoản hoặc mật khẩu');
     	}
     }
     public function Logout(){
     	Auth::logout();
-    	// return redirect()->back();
-        // return redirect();
-        return view('pages.home');
+        return redirect()->route('get_home_page');
     }
     //UPDATE User info
-    public function postEditInfo($id, Request $request){
-        try{
-            // $user = User::find($id);
-            $userinfo = UserInfo::find($id);
-            
-            // foreach ($userinfos as $userinfo) {
-                $userinfo->name = $request->name;
-            $userinfo->address = $request->address;
-            $userinfo->phone_number = $request->phone_number;
-            $userinfo->date_of_birth = $request->birth_of_date;
-            $userinfo->sex = $request->sex;
-            $userinfo->save();
-            // }
-            
-            return redirect()->back()->with('success','Sửa thông tin thành công');
-        }catch(Exception $ex){
-            return redirect()->back()->with('error','Sửa thông tin thất bại');
-        }
-    }
 }

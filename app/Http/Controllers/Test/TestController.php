@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Test;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostForumRequest;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +22,34 @@ class TestController extends Controller
         $tests = Tests::where('status',0)->paginate(6);
         return view('pages.test.testlist',compact('tests'));
     }
+    public function getTestDemo($id){
+        $test = Tests::find($id);
+        //$test->participant_number++;
+        $test->save();
+        $detail = TestDetail::where('id_test',$id)->inRandomOrder()->take(5)->get();
+        return view('pages.test.test_demo',compact('detail','test'));
+    }
 
-    public function getTestDetail($id){
+    public function getTestDetail($id, Request $re){
+        $test = Tests::find($id);
+        if(!is_null($re->pass)){
+            if(trim($re->pass) == $test->password){
+                $test->participant_number++;
+                $test->save();
+                $testDetail = TestDetail::where('id_test',$id)->get();
+                return view('pages.test.detail',compact('testDetail','test'));
+            }else{
+                return redirect()->back()->with('error','Mật khẩu không đúng, vui lòng nhập lại');
+            }
+        }else{
+            $test->participant_number++;
+            $test->save();
+            $testDetail = TestDetail::where('id_test',$id)->get();
+            return view('pages.test.detail',compact('testDetail','test'));
+        }
+    }
+
+    public function joinTestAgain($id){
         $test = Tests::find($id);
         $test->participant_number++;
         $test->save();
@@ -55,6 +81,8 @@ class TestController extends Controller
         $result->id_user = Auth::user()->id;
         $result->mark = $totalMark;
         $result->created_at = now();
+        $result->joined_time = $re->minute." phút ".$re->second." giây";
+        $result->correct_number = $correct;
         $result->save();
         return view('pages.test.test_result',compact('testDetail','attemp','info'));   
         } catch (Exception $e) {

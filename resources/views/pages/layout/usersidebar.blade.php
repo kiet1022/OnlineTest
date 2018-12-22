@@ -8,7 +8,7 @@
 					<!-- SIDEBAR USER TITLE -->
 					<div class="profile-usertitle">
 						<div class="profile-usertitle-name">
-							{{$userinfo->name}}
+							{{$user->info->name}}
 						</div>
 						<div class="profile-usertitle-job">
 							{{changeRole($user->level)}}
@@ -24,18 +24,23 @@
 					<!-- SIDEBAR MENU -->
 					<div class="profile-usermenu">
 						<ul class="nav">
-							<li class="active">
-								<a href="#">
+							<li @if($check_page == 'info'){!!'class="active"'!!} @endif>
+								<a href="{{ route('get_user_info_page',['id'=>$user->id]) }}">
 									<i class="glyphicon glyphicon-home"></i>
 								Thông tin chung </a>
 							</li>
-							<li>
-								<a href="#">
+							<li @if($check_page == 'addtest'){!!'class="active"'!!} @endif>
+								<a href="{{route('get_add_test_by_user')}}">
 									<i class="glyphicon glyphicon-user"></i>
-								Cài đặt tài khoản </a>
+								Tạo bài thi </a>
 							</li>
-							<li>
-								<a href="#" target="_blank">
+							<li @if($check_page == 'testadded'){!!'class="active"'!!} @endif>
+								<a href="{{route('get_test_added')}}">
+									<i class="glyphicon glyphicon-user"></i>
+								Các bài thi đã tạo </a>
+							</li>
+							<li @if($check_page == 'result'){!!'class="active"'!!} @endif>
+								<a href="{{route('get_user_test_result',['iduser'=>$user->id])}}">
 									<i class="glyphicon glyphicon-ok"></i>
 								Bài thi </a>
 							</li>

@@ -12,143 +12,162 @@
 */
 
 Route::get('/', function () {
-	//return view('pages.home');
-	$quess = App\Questions::all();
-	foreach ($quess as $q) {
-		$q->a = trim($q->a);
-		$q->b = trim($q->b);
-		$q->c = trim($q->c);
-		$q->d = trim($q->d);
-		$q->correct_answer = trim($q->correct_answer);
-		$q->save();
-	}
+	return view('pages.home');
+})->name('get_home_page');
+
+
+
+Route::prefix('admin')->middleware('admin')->group(function() {
+	Route::get('home', 'Admin\UserController@getAdminHomePage')->name('get_admin_home_page');
+	Route::prefix('user')->group(function(){
+		//view user list
+		Route::get('usermangement','Admin\UserController@getUserlist')->name('get_user_list');
+		//view add user page
+		Route::get('adduser', 'Admin\UserController@getViewAddUser')->name('get_add_user');
+		//add new user
+		Route::post('adduser','Admin\UserController@addUser')->name('post_add_user');
+		//delete user
+		Route::get('deleteuser/{id}','Admin\UserController@deleteUser')->name('delete_user');
+		//View edit user page
+		Route::get('edituser/{id}','Admin\UserController@getEditUser')->name('get_edit_user');
+		//Edit user
+		Route::post('edituser/{id}','Admin\UserController@postEditUser')->name('post_edit_user');
+		//Reset pass
+		Route::get('resetpass/{id}', 'AjaxController@resetPass')->name('reset_pass');
+	});
+	Route::prefix('newstype')->group(function(){
+		//view news type
+		Route::get('newstypelist', 'Admin\NewsTypeController@getNewsTypeList')->name('get_news_type_list');
+		//view add news type page
+		Route::get('addnewstype', 'Admin\NewsTypeController@getAddNewsType')->name('get_add_news_type');
+		//add news type
+		Route::post('addnewstype','Admin\NewsTypeController@postAddNewsType')->name('post_add_news_type');
+		//delete news type
+		Route::get('deletetype/{id}','Admin\NewsTypeController@deleteNewsType')->name('delete_news_type');
+		// view Edit news type page
+		Route::get('edittype/{id}','Admin\NewsTypeController@getEditNewsType')->name('get_edit_news_type');
+		//Edit news type page
+		Route::post('edittype/{id}','Admin\NewsTypeController@postEditNewsType')->name('post_edit_news_type');
+	});
+	Route::prefix('news')->group(function(){
+		//view news list
+		Route::get('newslist', 'Admin\NewsController@getNewsList')->name('get_news_list');
+		//View add news
+		Route::get('addnews', 'Admin\NewsController@getAddNews')->name('get_add_news');
+		//add news
+		Route::post('addnews', 'Admin\NewsController@postAddNews')->name('post_add_news');
+		//delete news type
+		Route::get('deletenews/{id}','Admin\NewsController@deleteNews')->name('delete_news');
+		// view Edit news type page
+		Route::get('editnews/{id}','Admin\NewsController@getEditNews')->name('get_edit_news');
+		//Edit news type page
+		Route::post('editnews{id}','Admin\NewsController@postEditNews')->name('post_edit_news');
+	});
+	Route::prefix('questions-type')->group(function(){
+		//Vieww questions types list
+		Route::get('questiontypeslist','Admin\QuestionTypeController@getQuestionsTypesList')->name('get_questions_types_list');
+		//View add question type
+		Route::get('getaddnewquestiontype','Admin\QuestionTypeController@getAddNewQuestionType')->name('get_add_question_type');
+		//Add new question type
+		Route::post('postaddnewquestiontype', 'Admin\QuestionTypeController@postAddNewQuestionType')->name('post_add_new_question_type');
+		// view Edit question type page
+		Route::get('editquestiontype/{id}','Admin\QuestionTypeController@getEditQuestionType')->name('get_edit_question_type');
+		//Edit question type
+		Route::post('editquestiontype/{id}','Admin\QuestionTypeController@postEditQuestionType')->name('post_edit_question_type');
+		//delete question type
+		Route::get('deletequestiontype/{id}','Admin\QuestionTypeController@deleteQuestionType')->name('delete_question_type');
+	});
+	Route::prefix('questions')->group(function(){
+		//view question list
+		Route::get('questionlist', 'Admin\QuestionController@getQuestionList')->name('get_question_list');
+		Route::get('getaddnewques', 'Admin\QuestionController@getAddNewQuestion')->name('get_add_new_question');
+		Route::post('postaddnewquest','Admin\QuestionController@postAddNewQuestion')->name('post_add_new_question');
+		Route::get('deletequestion/{id}','Admin\QuestionController@deleteQuestion')->name('delete_question');
+		Route::get('geteditquestion/{id}', 'Admin\QuestionController@getEditQuestion')->name('get_edit_question');
+		Route::post('posteditquestion/{id}','Admin\QuestionController@postEditQuestion')->name('post_edit_question');
+		Route::post('importquestionbyfile','Admin\QuestionController@importQuestionByFile')->name('import_question_by_file');
+	});
+	Route::prefix('tests')->group(function(){
+		//getaddtest
+		Route::get('addtestfrombank', 'Admin\TestController@getAddNewTestFromBank')->name('get_add_new_test_from_bank');
+		Route::post('addtestfrombank','Admin\TestController@postAddNewTestFromBank')->name('post_add_new_test_from_bank');
+		Route::get('addnewtest','Admin\TestController@getAddnewTest')->name('get_add_new_test');
+		Route::post('addnewtest','Admin\TestController@postAddNewTest')->name('post_add_new_test');
+		Route::get('testlist','Admin\TestController@getTestList')->name('get_test_list');
+		Route::get('edittest/{id}','Admin\TestController@getEditTest')->name('get_edit_test');
+		Route::post('edittest/{id}','Admin\TestController@postEditTest')->name('post_edit_test');
+		Route::get('deleteTest/{id}','Admin\TestController@deleteTest')->name('delete_test');
+		Route::get('confirm/{id}','Admin\TestController@confirmTest')->name('confirm_test');
+		Route::get('result/{id}', 'Admin\TestController@testResult')->name('get_test_result');
+	});
+	Route::prefix('statistic')->group(function(){
+		Route::get('test','Admin\StatisticController@testStatistic')->name('get_test_statistic');
+	});
 });
 
+Route::prefix('users')->middleware('user')->group(function(){
 
-
-Route::prefix('admin')->group(function() {
-	//view user list
-	Route::get('usermangement','AdminController@getUserlist')->name('get_user_list');
-	//view add user page
-	Route::get('adduser', 'AdminController@getViewAddUser')->name('get_add_user');
-	//add new user
-	Route::post('adduser','AdminController@addUser')->name('post_add_user');
-	//delete user
-	Route::get('deleteuser/{id}','AdminController@deleteUser')->name('delete_user');
-	//View edit user page
-	Route::get('edituser/{id}','AdminController@getEditUser')->name('get_edit_user');
-	//Edit user
-	Route::post('edituser/{id}','AdminController@postEditUser')->name('post_edit_user');
-	//Reset pass
-	Route::get('resetpass/{id}', 'AjaxController@resetPass')->name('reset_pass');
-
-
-	//view news type
-	Route::get('newstypelist', 'AdminController@getNewsTypeList')->name('get_news_type_list');
-	//view add news type page
-	Route::get('addnewstype', 'AdminController@getAddNewsType')->name('get_add_news_type');
-	//add news type
-	Route::post('addnewstype','AdminController@postAddNewsType')->name('post_add_news_type');
-	//delete news type
-	Route::get('deletetype/{id}','AdminController@deleteNewsType')->name('delete_news_type');
-	// view Edit news type page
-	Route::get('edittype/{id}','AdminController@getEditNewsType')->name('get_edit_news_type');
-	//Edit news type page
-	Route::post('edittype/{id}','AdminController@postEditNewsType')->name('post_edit_news_type');
-
-
-	//view news list
-	Route::get('newslist', 'AdminController@getNewsList')->name('get_news_list');
-	//View add news
-	Route::get('addnews', 'AdminController@getAddNews')->name('get_add_news');
-	//add news
-	Route::post('addnews', 'AdminController@postAddNews')->name('post_add_news');
-	//delete news type
-	Route::get('deletenews/{id}','AdminController@deleteNews')->name('delete_news');
-	// view Edit news type page
-	Route::get('editnews/{id}','AdminController@getEditNews')->name('get_edit_news');
-	//Edit news type page
-	Route::post('editnews{id}','AdminController@postEditNews')->name('post_edit_news');
-
-	//Vieww questions types list
-	Route::get('questiontypeslist','AdminController@getQuestionsTypesList')->name('get_questions_types_list');
-	//View add question type
-	Route::get('getaddnewquestiontype','AdminController@getAddNewQuestionType')->name('get_add_question_type');
-	//Add new question type
-	Route::post('postaddnewquestiontype', 'AdminController@postAddNewQuestionType')->name('post_add_new_question_type');
-	// view Edit question type page
-	Route::get('editquestiontype/{id}','AdminController@getEditQuestionType')->name('get_edit_question_type');
-	//Edit question type
-	Route::post('editquestiontype/{id}','AdminController@postEditQuestionType')->name('post_edit_question_type');
-	//delete question type
-	Route::get('deletequestiontype/{id}','AdminController@deleteQuestionType')->name('delete_question_type');
-
-Route::get('deleteTest/{id}','AdminController@deleteTest')->name('delete_test');
-	//view question list
-	Route::get('questionlist', 'AdminController@getQuestionList')->name('get_question_list');
-	Route::get('getaddnewques', 'AdminController@getAddNewQuestion')->name('get_add_new_question');
-	Route::post('postaddnewquest','AdminController@postAddNewQuestion')->name('post_add_new_question');
-	Route::get('deletequestion/{id}','AdminController@deleteQuestion')->name('delete_question');
-	Route::get('geteditquestion/{id}', 'AdminController@getEditQuestion')->name('get_edit_question');
-	Route::post('posteditquestion/{id}','AdminController@postEditQuestion')->name('post_edit_question');
-	Route::post('importquestionbyfile','AdminController@importQuestionByFile')->name('import_question_by_file');
-
-	//getaddtest
-	Route::get('addtest', 'AdminController@getAddNewTest')->name('get_add_new_test');
-	Route::post('addtest','AdminController@postAddNewTest')->name('post_add_new_test');
-	Route::get('testlist','AdminController@getTestList')->name('get_test_list');
-	Route::get('edittest/{id}','AdminController@getEditTest')->name('get_edit_test');
-	Route::post('edittest/{id}','AdminController@postEditTest')->name('post_edit_test');
-});
-
-Route::prefix('pages')->group(function(){
-	//View home page
-	Route::get('home', 'PageController@getHomePage')->name('get_home_page');
-	//View News Home page
-	Route::get('newshome', 'PageController@getNewsPage')->name('get_news_page');
-	//View News detail
-	Route::get('{tenkhongdau}/{id}.html', 'PageController@getNewsDetail')->name('get_news_detail');
-	//View News Type
-	Route::get('type/{id}','PageController@getNewsType')->name('get_news_type');
-	//View register page
-	Route::get('register', 'UserController@getRegisterPage')->name('get_register_page');
-	//View Login page
-	Route::get('login', 'UserController@getLoginPage')->name('get_login_page');
-	//Register
-	Route::post('register', 'UserController@postRegister')->name('post_register');
-	//Login
-	Route::post('login', 'UserController@PostLogin')->name('post_login');
-	//Forum
-	Route::get('forum','PageController@getForumPage')->name('get_forum_page');
-	//Get topic detail
-	Route::get('forum/detail/{id}','PageController@getTopicDetail')->name('get_topic_detail');
-	//Post
-	Route::post('postintoforum','PageController@postToForum')->name('post_to_forum');
-	//Comment
-	Route::post('comment/{id_post}','PageController@commentToPost')->name('comment');
-	//Like
-	Route::get('like','AjaxController@Like')->name('like');
-	//Dislike
-	Route::get('dislike','AjaxController@Dislike')->name('dislike');
+	Route::prefix('news')->group(function(){
+		//View News Home page
+		Route::get('news-home-page', 'User\NewsController@getNewsPage')->name('get_news_page');
+		//View News detail
+		Route::get('{tenkhongdau}/{id}.html', 'User\NewsController@getNewsDetail')->name('get_news_detail');
+		//View News Type
+		Route::get('type/{id}','User\NewsController@getNewsType')->name('get_news_type');
+	});
+	Route::prefix('info')->group(function(){
+		//View user info
+		Route::get('{id}', 'User\InfoController@getInfoPage')->name('get_user_info_page');
+		Route::post('{id}', 'User\InfoController@postEditInfo')->name('post_edit_userinfo');
+	});
+	Route::prefix('forum')->group(function(){
+		//Forum
+		Route::get('forum','User\ForumController@getForumPage')->name('get_forum_page');
+		//Get topic detail
+		Route::get('forum/detail/{id}','User\ForumController@getTopicDetail')->name('get_topic_detail');
+		//Post
+		Route::post('post-into-forum','User\ForumController@postToForum')->name('post_to_forum');
+		//Comment
+		Route::post('comment/{id_post}','User\ForumController@commentToPost')->name('comment');
+		//Like
+		Route::get('like','AjaxController@Like')->name('like');
+		//Dislike
+		Route::get('dislike','AjaxController@Dislike')->name('dislike');
+	});
+	Route::prefix('test')->group(function(){
+		Route::get('result/{iduser}','User\TestController@getTestResult')->name('get_user_test_result');
+		Route::get('addtest','User\TestController@getAddTest')->name('get_add_test_by_user');
+		Route::post('addtest','User\TestController@postAddTest')->name('post_add_test_by_user');
+		Route::get('testadded','User\TestController@getTestAdded')->name('get_test_added');
+		Route::get('preview/{id}','User\TestController@getTestPreview')->name('get_test_preview');
+	});
 	
 });
 
+Route::prefix('user')->group(function(){
+	//View register page
+	Route::get('register', 'User\UserController@getRegisterPage')->name('get_register_page');
+	//View Login page
+	Route::get('login', 'User\UserController@getLoginPage')->name('get_login_page');
+	//Register
+	Route::post('register', 'User\UserController@postRegister')->name('post_register');
+	//Login
+	Route::post('login', 'User\UserController@PostLogin')->name('post_login');
+	//Logout
+	Route::get('logout', 'User\UserController@Logout')->name('logout');
+});
 Route::prefix('test')->group(function(){
 	//test list
-	Route::get('testlist', 'TestController@getTestList')->name('get_test_list_user');
+	Route::get('test-list', 'Test\TestController@getTestList')->name('get_test_list_user');
+	//test demo
+	Route::get('demo/{id}','Test\TestController@getTestDemo')->name('get_test_demo');
 	//test detail
-	Route::get('testdetail/{id}','TestController@getTestDetail')->name('get_test_detail');
+	Route::post('test-detail/{id}','Test\TestController@getTestDetail')->name('get_test_detail');
 	//Submit attemp
-	Route::post('submittest/{idtest}','TestController@submitAttempt')->name('submit_attempt');
+	Route::post('submittest/{idtest}','Test\TestController@submitAttempt')->name('submit_attempt');
+	//Join test again
+	Route::get('join-again/{id}','Test\TestController@joinTestAgain')->name('join_test_again');
 	//Show test result
 	//Route::get('result/{idtest}/{iduser}','TestController@getTestResult')->name('get_test_result');
-});
-
-Route::prefix('user')->group(function(){
-	//Logout
-	Route::get('logout', 'UserController@Logout')->name('logout');
-	//View user info
-	Route::get('info/{id}', 'UserController@getInfoPage')->name('get_user_info_page');
-	Route::post('edit/{id}', 'UserController@postEditInfo')->name('post_edit_userinfo');
 });
 

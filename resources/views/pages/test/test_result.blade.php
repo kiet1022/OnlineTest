@@ -48,7 +48,7 @@
             <div style="text-align: center;"><strong>Nếu chưa hài lòng với kết quả, Bạn nên cố gắng tự kiểm tra lại bài làm trước khi xem đáp án hoặc lời giải!</strong><br><br>
               <h3>Tổng số câu đúng: {{$info['correct']}}/{{count($testDetail)}}</h3>
               <br><br>
-              <a href="{{route('get_test_detail',['id'=>$info['test']->id])}}" class="btn btn-success btn-lg"><i class="fa fa-edit"></i> Làm lại bài thi</a>
+              <a href="{{route('join_test_again',['id'=>$info['test']->id])}}" class="btn btn-success btn-lg"><i class="fa fa-edit"></i> Làm lại bài thi</a>
             </div>
           </div>
         </div>
@@ -129,7 +129,7 @@
         {{-- @endforeach --}}
         {{-- <button type="submit" class="btn btn-success">Nộp bài</button> --}}
     </form>
-    <a href="{{route('get_test_detail',['id'=>$info['test']->id])}}" class="btn btn-success btn-lg"><i class="fa fa-edit"></i> Làm lại bài thi</a>
+    <a href="{{route('join_test_again',['id'=>$info['test']->id])}}" class="btn btn-success btn-lg"><i class="fa fa-edit"></i> Làm lại bài thi</a>
    {{--  <div>{{$testDetail->links()}}</div> --}}
 </div>
   </div>

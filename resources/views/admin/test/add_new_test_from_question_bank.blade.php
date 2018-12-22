@@ -5,10 +5,10 @@
 @section('content')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="admin/usermangement" class="text-info">Trang chủ</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('get_home_page') }}" class="text-info">Trang chủ</a></li>
     <li class="breadcrumb-item" aria-current="page">Quản lý bài thi</li>
-    <li class="breadcrumb-item" aria-current="page"><a href="{{route('get_questions_types_list')}}" class="text-info">Danh sách loại câu hỏi</a></li>
-    <li class="breadcrumb-item " aria-current="page">Thêm bài thi</li>
+    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('get_test_list') }}">Danh sách bài thi</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Thêm bài thi từ ngân hàng câu hỏi</li>
 </ol>
 </nav>
     @if(count($errors)>0)
@@ -42,7 +42,7 @@
     <div style="height: 430px;overflow-y: scroll;">
         
     
-    <form action="{{route('post_add_new_test')}}" method="post">
+    <form action="{{route('post_add_new_test_from_bank')}}" method="post">
         @csrf
         <div class="container">
           <!-- Nav tabs -->
@@ -78,11 +78,15 @@
                     <option value="120">120 phút</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="pass">Mật khẩu bài thi</label>
+                <input type="text" id="pass" name="pass" placeholder="Nhập mật khẩu cho bài thi(Nhập 0 nếu không đặt mật khẩu)" class="form-control">
+            </div>
         </div>
         <div id="menu1" class="container tab-pane fade"><br>
             <p id="max_ques">Số câu hỏi tối đa:</p>
             <p id="selected_ques">Số câu hỏi đã chọn: 0</p>
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="testlist" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th></th>
@@ -182,7 +186,7 @@
 </div>
 @endsection
 @section('documentready')
-    var table = $('#example').DataTable( {
+    var table = $('#testlist').DataTable( {
         columnDefs: [ {
             orderable: false,
             className: 'select-checkbox',
@@ -210,13 +214,13 @@
         ]
     } );
     var count = 0;
-    $('#example').DataTable().on('select', function(e, dt, type, indexes){
-        count = $('#example').DataTable().rows('.selected').count();
+    $('#testlist').DataTable().on('select', function(e, dt, type, indexes){
+        count = $('#testlist').DataTable().rows('.selected').count();
         $('#selected_ques').html('Số câu hỏi đã chọn: '+count);
         checkNumberOfQuestion(count);
     });
-    $('#example').DataTable().on('deselect', function(e, dt, type, indexes){
-        count = $('#example').DataTable().rows('.selected').count();
+    $('#testlist').DataTable().on('deselect', function(e, dt, type, indexes){
+        count = $('#testlist').DataTable().rows('.selected').count();
         $('#selected_ques').html('Số câu hỏi đã chọn: '+count);
         checkNumberOfQuestion(count);
     });    
@@ -224,15 +228,16 @@
         "searching": false,
         "pageLength": 5,
     }); --}}
+
 @endsection
 @section('script')
 <script>
     function checkNumberOfQuestion(count){
         var begin = $("input[name=numberofquestion]").val();
-        if(begin >=1 && begin <= 20){
+        if(parseInt(begin) >=1 && parseInt(begin) <= 20){
 
         }else
-        if(count > begin){
+        if(count > parseInt(begin)){
             alert("Vượt quá số câu hỏi tối đa, vui lòng bỏ bớt câu hỏi");
             $('#submit').addClass('disabled').off('click').on('click',function(e){
                 e.preventDefault();
@@ -270,7 +275,7 @@
         }
 
         //set the question for preview
-        var data = $('#example').DataTable().rows( {selected:  true} ).data();
+        var data = $('#testlist').DataTable().rows( {selected:  true} ).data();
         var newarray=[];
         var html ='';       
         for (var i=0; i < data.length ;i++){
@@ -298,13 +303,13 @@
         var title = $("input[name=title]").val();
         var time = $('select[name=time]').val();
         var numberofquestion = $("input[name=numberofquestion]").val();
-        var dataTable = $('#example').DataTable().rows( {selected:  true} ).data();
+        var dataTable = $('#testlist').DataTable().rows( {selected:  true} ).data();
         var data = []
         for(var i = 0; i < dataTable.length; i++) {
             data[i] = dataTable[i];
         }
         $.ajax({
-            url:"{{ route('post_add_new_test') }}",
+            url:"{{ route('post_add_new_test_from_bank') }}",
             method:"POST",
             data: {
                 'title':title,

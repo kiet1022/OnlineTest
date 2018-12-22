@@ -44,7 +44,11 @@
 								</div>
 							</div>
 							<div class="posttext pull-left">
-								<h2><a href="{{ route('get_test_detail',['id'=>$p->id]) }}">{{ $p->title }}</a></h2>
+								<h2><a href="{{ route('get_test_demo',['id'=>$p->id]) }}">{{ $p->title }} 
+									@if($p->password != '0')
+									(Bài thi có phí)
+									@endif</a>
+								</h2>
 								<p>Thời gian làm bài: {{ $p->time }} phút</p>
 								<p>Số lượng câu hỏi: {{$p->number_question}}</p>
 								<p>Điểm tối đa: {{$p->mark}}</p>

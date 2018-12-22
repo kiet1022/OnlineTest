@@ -10,11 +10,11 @@ class TestResult extends Model
 
     public function test()
     {
-    	return $this->belongsTo('App\Test','id_test','id');
+    	return $this->belongsTo('App\Tests','id_test','id');
     }
 
     public function user()
     {
-    	return $this->belongsTo('App\User','owner','id');
+    	return $this->belongsTo('App\User','id_user','id');
     }
 }

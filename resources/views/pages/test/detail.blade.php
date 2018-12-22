@@ -38,7 +38,7 @@
             </div>
             </div>
         </div>
-      <form action="{{route('submit_attempt',['idtest'=>$testDetail[1]->id_test])}}" method="POST">
+      <form action="{{route('submit_attempt',['idtest'=>$testDetail[0]->id_test])}}" method="POST">
         @csrf     {{--    
         @foreach($testDetail as $detail) --}}
         <input type="hidden" id="min" name="minute">

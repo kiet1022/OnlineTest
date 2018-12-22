@@ -180,5 +180,12 @@ function showMinutes($time){
 	return $result;
 }
 
+function checkCorrectQuestionForEditTest($answer, $correct){
+	$result='';
+	if($answer == $correct){
+		$result = 'checked';
+	}
+	return $result;
+}
 
 ?>

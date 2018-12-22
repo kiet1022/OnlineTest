@@ -26,7 +26,7 @@ class ImportQuestion implements ToModel, ToArray, WithHeadingRow
     public function model(array $row)
     {
       if(!is_null($row[0])) {
-        return new User([
+        return new Questions([
            // 'content'     => $row[0],
            // 'id_type'    => $row[1],
            // 'a' => $row[2],
@@ -37,7 +37,7 @@ class ImportQuestion implements ToModel, ToArray, WithHeadingRow
            // 'owner' => Auth::user()->id
            // 
            'content'     => $row['Content'],
-           'id_type'    => $row['Type'],
+           //'id_type'    => $row['Type'],
            'a' => $row['a'],
            'b' => $row['b'],
            'c' => $row['c'],

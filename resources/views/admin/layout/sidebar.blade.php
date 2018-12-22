@@ -11,6 +11,9 @@
                             <a href="{{route('get_test_list')}}">Danh sách</a>
                         </li>
                         <li>
+                            <a href="{{route('get_add_new_test_from_bank')}}">Thêm bài thi từ ngân hàng</a>
+                        </li>
+                        <li>
                             <a href="{{route('get_add_new_test')}}">Thêm bài thi</a>
                         </li>
                     </ul>

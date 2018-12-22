@@ -2,6 +2,15 @@
 @section('title')
 {{"Trang cá nhân"}}
 @endsection
+@section('breadcrumb')
+	<div class="container">
+		<ol class="breadcrumb" style="background-color: #ffffff; margin-bottom: 0px; border-left: 5px solid #29ca8e;">
+			<li><a href="{{ route('get_home_page') }}" class="text-info">Trang chủ</a></li>
+			<li>Thông tin cá nhân</li>
+			<li class="active">{{$user->info->name}}</li>
+		</ol>
+	</div>
+@endsection
 @section('content')
 <div class="col-md-9" style="background: white; padding-top: 30px;">
 	@if(count($errors)>0)
@@ -33,24 +42,24 @@
     </div>
     @endif
 	<div class="col-md-10 col-md-offset-1" style="min-height: 437px;">
-		<form class="form-horizontal" action="{{route('post_edit_userinfo',['id'=>$userinfo->id])}}" method="post">
+		<form class="form-horizontal" action="{{route('post_edit_userinfo',['id'=>$user->info->id])}}" method="post">
 			@csrf
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="name">Họ Tên:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="name" placeholder="Nhập họ tên" name="name" value="{{$userinfo->name}}">
+					<input type="text" class="form-control" id="name" placeholder="Nhập họ tên" name="name" value="{{$user->info->name}}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="address">Địa chỉ:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" name="address" value="{{$userinfo->address}}">
+					<input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" name="address" value="{{$user->info->address}}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="phone">Số điện thoại:</label>
 				<div class="col-sm-4">
-					<input type="number" class="form-control" id="phone" placeholder="Nhập số điện thoại" name="phone_number" value="{{$userinfo->phone_number}}">
+					<input type="number" class="form-control" id="phone" placeholder="Nhập số điện thoại" name="phone_number" value="{{$user->info->phone_number}}">
 				</div>
 				<label class="control-label col-sm-2" for="email">Email:</label>
 				<div class="col-sm-4">
@@ -60,12 +69,12 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="birthday">Ngày sinh:</label>
 				<div class="col-sm-4">
-					<input type="date" class="form-control" id="birthday" placeholder="Nhập địa chỉ" name="birth_of_date" value="{{$userinfo->date_of_birth}}">
+					<input type="date" class="form-control" id="birthday" placeholder="Nhập địa chỉ" name="birth_of_date" value="{{$user->info->date_of_birth}}">
 				</div>
 				<label class="control-label col-sm-2" for="sex">Giới tính:</label>
 				<div class="col-sm-4">
 					<select name="sex" id="sex" class="form-control">
-						{!! changeGender($userinfo->sex) !!}
+						{!! changeGender($user->info->sex) !!}
 					</select>
 				</div>
 			</div>

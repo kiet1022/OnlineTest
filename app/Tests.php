@@ -26,4 +26,8 @@ class Tests extends Model
     {
         return $this->belongsTo('App\User','owner','id');
     }
+
+    public function topic(){
+        return $this->belongsTo('App\TestTopic','id_topic','id');
+    }
 }

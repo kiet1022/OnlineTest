@@ -34,13 +34,7 @@
      <!-- HOME -->
      @yield('extends')
      <section style="padding-top: 20px; padding-bottom: 20px;" id="register">
-          <div class="container">
-               <ol class="breadcrumb" style="background-color: #ffffff; margin-bottom: 0px; border-left: 5px solid #29ca8e;">
-                    <li><a href="{{ route('get_home_page') }}" class="text-info">Trang chủ</a></li>
-                    <li>Thông tin cá nhân</li>
-                    <li class="active">{{$userinfo->name}}</li>
-               </ol>
-          </div>
+          @yield('breadcrumb')
           <div class="container">
                <div class="row profile">
                     @include('pages.layout.usersidebar')

@@ -73,6 +73,7 @@
             $('#sidebar').toggleClass('active');
             $(this).toggleClass('active');
         });
+        $('#example').DataTable();
         @yield('documentready')
     });
 </script>
