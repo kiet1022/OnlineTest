@@ -20,7 +20,7 @@ use App\Http\Requests\AddNewQuestionRequest;
 use App\Http\Requests\AddNewTestRequest;
 use Exception;
 use Maatwebsite\Excel\Concerns\ToModel;
-use App\Imports\ImpostQuestion;
+use App\Imports\ImportQuestion;
 use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller
@@ -140,7 +140,7 @@ class QuestionController extends Controller
                 return redirect()->back()->with('error','Vui lòng chọn đúng định dạng file');
             }
 
-            $array = (new ImpostQuestion)->toArray($file)[0];
+            $array = (new ImportQuestion)->toArray($file)[0];
 
                 //return $array;
             try {

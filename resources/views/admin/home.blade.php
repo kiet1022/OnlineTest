@@ -5,7 +5,7 @@
 @section('content')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="admin/usermangement" class="text-info">Trang chủ</a></li>
+    <li class="breadcrumb-item"><a href="{{route('get_home_page')}}" class="text-info">Trang chủ</a></li>
     <li class="breadcrumb-item active" aria-current="page">Trang Admin</li>
   </ol>
 </nav>
