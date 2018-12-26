@@ -65,5 +65,4 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Mật khẩu cũ không đúng');
         }
     }
-    //UPDATE User info
 }

@@ -7,7 +7,6 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin/usermangement" class="text-info">Trang chủ</a></li>
     <li class="breadcrumb-item" aria-current="page">Quản lý bài thi</li>
-    <li class="breadcrumb-item" aria-current="page"><a href="{{route('get_questions_types_list')}}" class="text-info">Danh sách loại câu hỏi</a></li>
     <li class="breadcrumb-item " aria-current="page">Chỉnh sửa</li>
 </ol>
 </nav>

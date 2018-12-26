@@ -35,7 +35,6 @@
 <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
-            <th></th>
             <th>ID</th>
             <th>Nội dung câu hỏi</th>
             <th>Đáp án A</th>
@@ -51,7 +50,6 @@
     <tbody>
        @foreach($questions as $qt)
        <tr>
-        <td></td>
         <td>{{$qt->id}}</td>
         <td>{!! $qt->content !!}</td>
         <td {!!changeCorrectAnswerColor($qt->a,$qt->correct_answer)!!}>{{$qt->a}}</td>
@@ -67,7 +65,7 @@
 </tbody>
 </table>
 @endsection
-@section('documentready')
+{{-- @section('documentready')
     $('#example').DataTable( {
         columnDefs: [ {
             orderable: false,
@@ -80,7 +78,7 @@
         },
         order: [[ 1, 'asc' ]]
     } );
-@endsection
+@endsection --}}
 {{-- @section('script')
 <script>
     $(document).ready(function(){

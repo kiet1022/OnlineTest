@@ -18,17 +18,17 @@
     <div class="row">
       <div class="card-deck mb-3" style="width: 100%;">
         <div class="card bg-default">
-            <a href="{{route('get_edit_user',['id'=>$user->id])}}">      
+            <a href="{{route('get_edit_admin_info',['id'=>$user->id])}}">      
                 <div class="card-body text-center">
-                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                <img class="rounded-circle" src="images/user.png" alt="" width="50%;">
                 </div>
             </a>
-            <a href="{{route('get_edit_user',['id'=>$user->id])}}" class="card-footer bg-success btn btn-success text-white">Thông tin cá nhân</a>
+            <a href="{{route('get_edit_admin_info',['id'=>$user->id])}}" class="card-footer bg-success btn btn-success text-white">Thông tin cá nhân</a>
         </div>
         <div class="card bg-default">
             <a href="{{route('get_user_list')}}">      
                 <div class="card-body text-center">
-                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                <img class="rounded-circle" src="images/users.png" alt="" width="50%;">
                 </div>
             </a>
             <a href="{{route('get_user_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý người dùng</a>
@@ -36,7 +36,7 @@
         <div class="card bg-default">
             <a href="{{route('get_question_list')}}">      
                 <div class="card-body text-center">
-                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                <img class="rounded-circle" src="images/question.png" alt="" width="50%;">
                 </div>
             </a>
             <a href="{{route('get_question_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý câu hỏi</a>
@@ -46,7 +46,7 @@
       <div class="card bg-default">
             <a href="{{route('get_test_list')}}">      
                 <div class="card-body text-center">
-                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                <img class="rounded-circle" src="images/test.png" alt="" width="50%;">
                 </div>
             </a>
             <a href="{{route('get_test_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý bài thi</a>
@@ -54,7 +54,7 @@
         <div class="card bg-default">
             <a href="{{route('get_news_list')}}">      
                 <div class="card-body text-center">
-                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                <img class="rounded-circle" src="images/newspaper.png" alt="" width="50%;">
                 </div>
             </a>
             <a href="{{route('get_news_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý tin tức</a>
@@ -62,7 +62,7 @@
         <div class="card bg-default">
             <a href="{{route('get_test_statistic')}}">      
                 <div class="card-body text-center">
-                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                <img class="rounded-circle" src="images/pie-chart.png" alt="" width="50%;">
                 </div>
             </a>
             <a href="{{route('get_test_statistic')}}" class="card-footer bg-success btn btn-success text-white">Thống kê</a>

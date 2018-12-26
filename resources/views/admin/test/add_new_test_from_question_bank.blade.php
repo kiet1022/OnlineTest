@@ -42,7 +42,7 @@
     <div style="height: 430px;overflow-y: scroll;">
         
     
-    <form action="{{route('post_add_new_test_from_bank')}}" method="post">
+    <form action="" method="post">
         @csrf
         <div class="container">
           <!-- Nav tabs -->
@@ -64,6 +64,15 @@
             <div class="form-group">
                 <label for="ipnewstype">Tiêu đề bài thi</label>
                 <input type="text" class="form-control" id="idquestiontype" placeholder="Nhập tiêu đề bài thi" name='title'>
+            </div>
+            <div class="form-group">
+                <label for="time">Chủ đề bài thi</label>
+                <select name="topics" id="topic" class="form-control" required="true">
+                    @foreach($topics as $topic)
+                    <option value="{{$topic->id}}">{{$topic->title}}</option>
+                    @endforeach
+                    <option value="0">Khác...</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="ipnewstype">Số lượng câu hỏi</label>
@@ -97,7 +106,7 @@
                         <th>Đáp án C</th>
                         <th>Đáp án D</th>
                         <th>Đáp án đúng</th>
-                        <th>Chủ đề</th>
+                        {{-- <th>Chủ đề</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -111,7 +120,7 @@
                     <td>{{$qt->c}}</td>
                     <td>{{$qt->d}}</td>
                     <td>{{$qt->correct_answer}}</td>
-                    <td>{{$qt->type->name}}</td>
+                    {{-- <td>{{$qt->type->name}}</td> --}}
                 </tr>
                 @endforeach
             </tbody>
@@ -159,7 +168,6 @@
                         <th>Đáp án C</th>
                         <th>Đáp án D</th>
                         <th>Đáp án đúng</th>
-                        <th>Chủ đề</th>
                     </tr>
                 </thead>
                 <tbody id="preview_question">
@@ -171,7 +179,6 @@
                     <td >sdfsdfsdf</td>
                     <td >sdfsdfsd</td>
                     <td >ssdsdsdsd</td>
-                    <td >sdfsdfsdf</td>
                 </tr>    
             </tbody>
         </table>
@@ -286,7 +293,6 @@
             html += '<td>'+data[i][5]+'</td>';
             html += '<td>'+data[i][6]+'</td>';
             html += '<td>'+data[i][7]+'</td>';
-            html += '<td>'+data[i][8]+'</td>';
             html += '</tr>'
         }
         $('#preview_question').html(html);
@@ -302,6 +308,7 @@
     $('#submit').on('click', function(){
         var title = $("input[name=title]").val();
         var time = $('select[name=time]').val();
+        var topic = $("select[name=topics]").val();
         var numberofquestion = $("input[name=numberofquestion]").val();
         var dataTable = $('#testlist').DataTable().rows( {selected:  true} ).data();
         var data = []
@@ -312,6 +319,7 @@
             url:"{{ route('post_add_new_test_from_bank') }}",
             method:"POST",
             data: {
+                'topic': topic,
                 'title':title,
                 'time': time,
                 'numberofquestion':numberofquestion,

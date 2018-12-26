@@ -32,7 +32,13 @@
           </div>
           <div class="row">
             <div class="col-md-6" style="text-align: right;"><h4>Tên thí sinh:</h4></div>
-            <div class="col-md-6" style="text-align: left;"><h4>{{Auth::user()->info->name}}</h4></div>
+            <div class="col-md-6" style="text-align: left;"><h4>
+              @if(Auth::check())
+                {{Auth::user()->info->name}}
+              @else
+                {{"Khách"}}
+              @endif
+            </h4></div>
           </div>
           <div class="row">
             <div class="col-md-6" style="text-align: right;"><h4>Thời gian làm bài:</h4></div>

@@ -58,6 +58,11 @@ class TestController extends Controller
     }
 
     public function submitAttempt($idtest, Request $re){
+        // $test = Tests::find($idtest);
+        // $minute = $test->time - $re->minute;
+        // $second = 60 - $re->second;
+
+        // return $minute."------".$second;
         try {
         $attemp = $re;
         $test = Tests::find($idtest);
@@ -75,13 +80,25 @@ class TestController extends Controller
                 }
             }
         }
-        $info = array('correct'=>$correct,'totalMark'=>$totalMark,'joindate'=>now(),'test'=>$test, 'min'=>$re->minute,'sec'=>$re->second);
+        $info = array('correct'=>$correct,'totalMark'=>$totalMark,'joindate'=>now(),'test'=>$test, 'min'=>($test->time - $re->minute - 1),'sec'=>(60 - $re->second));
         $result = new TestResult;
         $result->id_test = $idtest;
-        $result->id_user = Auth::user()->id;
+        if(Auth::check()){
+            $result->id_user = Auth::user()->id;
+        }else{
+            $result->id_user = 10000;
+        }
         $result->mark = $totalMark;
         $result->created_at = now();
-        $result->joined_time = $re->minute." phút ".$re->second." giây";
+
+        //save time joined
+        $minute = $test->time - $re->minute;
+        $second = 60 - $re->second;
+        if($minute == 1){
+            $result->joined_time = $second." giây";
+        }else if($minute > 1){
+            $result->joined_time = ($minute - 1)." phút ".$second." giây";
+        }        
         $result->correct_number = $correct;
         $result->save();
         return view('pages.test.test_result',compact('testDetail','attemp','info'));   

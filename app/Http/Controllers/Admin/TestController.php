@@ -30,7 +30,8 @@ class TestController extends Controller
     //
      public function getAddNewTestFromBank(){
         $questions = Questions::where('status',0)->get();
-        return view('admin.test.add_new_test_from_question_bank',compact('questions'));
+        $topics = TestTopic::where('status',0)->get();
+        return view('admin.test.add_new_test_from_question_bank',compact('questions','topics'));
     }
     public function getAddnewTest(){
         $topics = TestTopic::where('status',0)->get();
@@ -61,6 +62,7 @@ class TestController extends Controller
             $test->number_question = $request->numberofquestion;
             $test->mark = 100;
             $test->owner = Auth::user()->id;
+            $test->id_topic = $request->topic;
             if(is_null($request->pass) || $request->pass == ""){
                 $test->password = '0';
             }else{
@@ -71,6 +73,7 @@ class TestController extends Controller
                 $detail = new TestDetail;
                 $detail->id_test = $test->id;
                 $detail->id_question = $request->data[$i][1];
+                $detail->status = 0;
                 $detail->save();
             }
             $result['success'] = true;
@@ -124,7 +127,7 @@ class TestController extends Controller
                         $detail = new TestDetail;
                         $detail->id_test = $test->id;
                         $detail->id_question = $question->id;
-                        $detail->status = 1;
+                        $detail->status = 0;
                         $detail->save();
                     }
                 }
@@ -152,7 +155,7 @@ class TestController extends Controller
                     $detail = new TestDetail;
                     $detail->id_test = $test->id;
                     $detail->id_question = $question->id;
-                    $detail->status = 1;
+                    $detail->status = 0;
                     $detail->save();
                 }
             }

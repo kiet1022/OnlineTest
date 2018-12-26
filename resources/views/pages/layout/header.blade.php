@@ -30,8 +30,20 @@
                     @endguest
                     @auth
                          <ul class="nav navbar-nav navbar-right">
-                              <li><a href="#register" style="padding: 0;"><a href="{{route('get_user_info_page',['id'=>Auth::user()->id])}}">Xin chào {{Auth::user()->info->name}}</a></a></li>
-                              <li><a href="#login" style="padding: 0;"><a href="{{route('logout')}}" class="smoothScroll">Đăng Xuất</a></a></li>
+                              <li>
+                                   <a href="#register" style="padding: 0;">
+                                        <a href="@if(Auth::user()->level == 0)
+                                        {{route("get_user_info_page",["id"=>Auth::user()->id])}}
+                                             @elseif(Auth::user()->level == 1)
+                                                  {{route("get_admin_home_page")}}
+                                             @endif">Xin chào {{Auth::user()->info->name}}</a>
+                                   </a>
+                              </li>
+                              <li>
+                              <a href="#login" style="padding: 0;">
+                                   <a href="{{route('logout')}}" class="smoothScroll">Đăng Xuất</a>
+                              </a>
+                              </li>
                          </ul>
                     @endauth
                </div>

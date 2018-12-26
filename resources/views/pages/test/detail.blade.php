@@ -22,9 +22,9 @@
     <div class="col-md-12 test-content">
         <div style="overflow-y: scroll; height: 100px;">
             <div class="col-md-6">
-                <button class="btn btn-primary btn-lg" id="btnct" onclick="countdownTimer()">
+                {{-- <button class="btn btn-primary btn-lg" id="btnct" onclick="countdownTimer()">
                     <i class="fa fa-play" aria-hidden="true"></i> Bắt đầu làm bài
-                </button>
+                </button> --}}
             </div>
             <div class="col-md-6 clock">
                 <div id="clockdiv">
@@ -75,29 +75,27 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        document.getElementById('submit').setAttribute('disabled', 'disabled');
-    });
-  function countdownTimer(){
-    document.getElementById('submit').removeAttribute('disabled', 'disabled');
+        // document.getElementById('submit').setAttribute('disabled', 'disabled');
+        // document.getElementById('submit').removeAttribute('disabled', 'disabled');
     //var deadline = new Date("dec 31, 2018 15:37:25").getTime(); 
   // var hours = $('#hour').val();
   var minutes = document.getElementById("minute").innerHTML - 1;
     //var minutes = 2;
-  var seconds = 60;
-  document.getElementById('btnct').setAttribute('disabled', 'disabled');
-var x = setInterval(function() { 
-seconds--;
-if(seconds == 0){
-  if(minutes >  0){
-    seconds = 59;
-    minutes--;
-  }else {
-    clearInterval(x); 
+    var seconds = 60;
+    //document.getElementById('btnct').setAttribute('disabled', 'disabled');
+    var x = setInterval(function() { 
+        seconds--;
+        if(seconds == 0){
+          if(minutes >  0){
+            seconds = 59;
+            minutes--;
+        }else {
+            clearInterval(x); 
         // document.getElementById("demo").innerHTML = "TIME UP"; 
         document.getElementById("minute").innerHTML ='0' ;  
         document.getElementById("second").innerHTML = '0';
         alert('hết giờ'); 
-  }
+    }
 }
 if(minutes == 1){
     $('#clockdiv').css({'background':'red','border':'3px solid red'});
@@ -109,6 +107,7 @@ document.getElementById("second").innerHTML =seconds;
 $('#min').val(minutes);
 $('#sec').val(seconds);
 }, 1000); 
-}
+});
+
 </script> 
 @endsection

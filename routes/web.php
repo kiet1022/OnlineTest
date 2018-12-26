@@ -34,6 +34,11 @@ Route::prefix('admin')->middleware('admin')->group(function() {
 		Route::get('edituser/{id}','Admin\UserController@getEditUser')->name('get_edit_user');
 		//Edit user
 		Route::post('edituser/{id}','Admin\UserController@postEditUser')->name('post_edit_user');
+		//Edit info for admin
+		Route::get('editadmininfo/{id}','Admin\UserController@getEditAdminInfo')->name('get_edit_admin_info');
+		Route::post('editadmininfo/{id}','Admin\UserController@postEditAdminInfo')->name('post_edit_admin_info');
+		//Change pass for admin
+		Route::post('changepass/{id}','Admin\UserController@ChangePass')->name('change_pass_admin');
 		//Reset pass
 		Route::get('resetpass/{id}', 'AjaxController@resetPass')->name('reset_pass');
 	});
@@ -111,19 +116,10 @@ Route::prefix('admin')->middleware('admin')->group(function() {
 });
 
 Route::prefix('users')->middleware('user')->group(function(){
-
-	Route::prefix('news')->group(function(){
-		//View News Home page
-		Route::get('news-home-page', 'User\NewsController@getNewsPage')->name('get_news_page');
-		//View News detail
-		Route::get('{tenkhongdau}/{id}.html', 'User\NewsController@getNewsDetail')->name('get_news_detail');
-		//View News Type
-		Route::get('type/{id}','User\NewsController@getNewsType')->name('get_news_type');
-	});
 	Route::prefix('info')->group(function(){
 		//View user info
 		Route::get('{id}', 'User\InfoController@getInfoPage')->name('get_user_info_page');
-		Route::post('{id}', 'User\InfoController@postEditInfo')->name('post_edit_userinfo');
+		Route::post('edit/user-{id}/{idinfo}', 'User\InfoController@postEditInfo')->name('post_edit_userinfo');
 		Route::post('changePass/{id}','User\UserController@changePass')->name('changePass');
 	});
 	Route::prefix('forum')->group(function(){
@@ -162,6 +158,14 @@ Route::prefix('user')->group(function(){
 	//Logout
 	Route::get('logout', 'User\UserController@Logout')->name('logout');
 });
+Route::prefix('news')->group(function(){
+	//View News Home page
+	Route::get('news-home-page', 'User\NewsController@getNewsPage')->name('get_news_page');
+	//View News detail
+	Route::get('{tenkhongdau}/{id}.html', 'User\NewsController@getNewsDetail')->name('get_news_detail');
+	//View News Type
+	Route::get('type/{id}','User\NewsController@getNewsType')->name('get_news_type');
+});
 Route::prefix('test')->group(function(){
 	//test list
 	Route::get('test-list', 'Test\TestController@getTestList')->name('get_test_list_user');
@@ -177,3 +181,7 @@ Route::prefix('test')->group(function(){
 	//Route::get('result/{idtest}/{iduser}','TestController@getTestResult')->name('get_test_result');
 });
 
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

@@ -111,9 +111,9 @@
 @endsection
 @section('script')
 <script>
- CKEDITOR.replace( 'exampleFormControlTextarea2' );
+// CKEDITOR.replace( 'exampleFormControlTextarea2' );
  
- $("#answerd").change(function (){
+ $(".answer").change(function (){
   var html = '';
  html += '<label for="exampleFormControlSelect1">Chọn đáp án đúng</label>'+
  '<select class="form-control" id="exampleFormControlSelect1" name="correct_answer">'+
@@ -121,7 +121,7 @@
  '<option value="B">'+$('#answerb').val()+'</option>'+
  '<option value="C">'+$('#answerc').val()+'</option>'+
  '<option value="D">'+$('#answerd').val()+'</option>'+'</select>'
-    $('#choseCorrectAnswer').html();
+    $('#choseCorrectAnswer').html('');
     $('#choseCorrectAnswer').html(html);
  });
 </script>

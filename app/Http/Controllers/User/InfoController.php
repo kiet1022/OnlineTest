@@ -18,11 +18,10 @@ class InfoController extends Controller
 		return view('pages.user.userinfo',compact('user','check_page'));
 	}
 
-	public function postEditInfo($id, Request $request){
+	public function postEditInfo($id, $idinfo, Request $request){
 		try{
             // $user = User::find($id);
-			$userinfo = UserInfo::find($id);
-
+			$userinfo = UserInfo::find($idinfo);
             // foreach ($userinfos as $userinfo) {
 			$userinfo->name = $request->name;
 			$userinfo->address = $request->address;
@@ -31,7 +30,6 @@ class InfoController extends Controller
 			$userinfo->sex = $request->sex;
 			$userinfo->save();
             // }
-
 			return redirect()->back()->with('success','Sửa thông tin thành công');
 		}catch(Exception $ex){
 			return redirect()->back()->with('error','Sửa thông tin thất bại');

@@ -5,10 +5,9 @@
 @section('content')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="admin/usermangement" class="text-info">Trang chủ</a></li>
-    <li class="breadcrumb-item" aria-current="page">Quản lý người dùng</li>
-    <li class="breadcrumb-item" aria-current="page"><a href="{{route('get_user_list')}}" class="text-info">Danh sách</a></li>
-    <li class="breadcrumb-item" aria-current="page">Sửa người dùng</li>
+    <li class="breadcrumb-item"><a href="{{route('get_home_page')}}" class="text-info">Trang chủ</a></li>
+    <li class="breadcrumb-item" aria-current="page"><a class="text-info" href="{{route('get_admin_home_page')}}">Trang Admin</a></li>
+    <li class="breadcrumb-item" aria-current="page">Sửa thông tin</li>
 </ol>
 </nav>
 <div class="col-sm-8 offset-sm-2">
@@ -40,7 +39,7 @@
         </button>
     </div>
 @endif
-<form action="{{ route('post_edit_user',['id'=>$user->id]) }}" method="post">
+<form action="{{ route('post_edit_admin_info',['id'=>$user->id]) }}" method="post">
     @csrf
     <div class="form-row">
       <div class="form-group col-md-12">
@@ -83,8 +82,27 @@
           </select>
       </div>
   </div>
-<button type="submit" class="btn btn-primary">Lưu</button>
+<button type="submit" class="btn btn-success" style="width: 150px;">Lưu</button>
+<button type="button" class="btn btn-warning" style="width: 150px;" data-toggle="collapse" data-target="#demo">Đổi mật khẩu</button>
 </form>
+      <div id="demo" class="collapse">
+        <form action="{{route('change_pass_admin',['id'=>$user->id])}}" method="POST" >
+          @csrf
+          <div class="form-group">
+          <label class="control-label" for="newPass">Mật khẩu mới</label>
+            <input type="password" class="form-control" id="newPass" name="newpass" placeholder="Vui lòng nhập mật khẩu mới">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="oldPass">mật khẩu cũ:</label>
+            <input type="password" class="form-control" id="oldPass" name="oldpass" placeholder="Vui lòng nhập mật khẩu cũ">
+        </div>
+        <div class="form-group">  
+          <div class="col-sm-offset-1 col-sm-10 text-center">
+            <button type="submit" class="btn btn-success" style="width: 150px;">Lưu</button>
+          </div>
+        </div>
+        </form>
+      </div>
 </div>
 @endsection
 

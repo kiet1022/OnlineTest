@@ -42,7 +42,7 @@
     </div>
     @endif
 	<div class="col-md-10 col-md-offset-1" style="min-height: 437px;">
-		<form class="form-horizontal" action="{{route('post_edit_userinfo',['id'=>$user->info->id])}}" method="post">
+		<form class="form-horizontal" action="{{route('post_edit_userinfo',['id'=>$user->id, 'idinfo'=>$user->info->id])}}" method="post">
 			@csrf
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="name">Họ Tên:</label>
@@ -104,7 +104,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="oldPass">mật khẩu cũ:</label>
 					<div class="col-sm-10">
-						<input type="password 	" class="form-control" id="oldPass" name="oldpass" placeholder="Vui lòng nhập mật khẩu cũ">
+						<input type="password" class="form-control" id="oldPass" name="oldpass" placeholder="Vui lòng nhập mật khẩu cũ">
 					</div>
 				</div>
 				<div class="form-group">  

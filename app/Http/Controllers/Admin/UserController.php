@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -159,6 +160,43 @@ class UserController extends Controller
 		}catch(Exception $ex){
 			return redirect()->back()->with('error',$ex->getMessage());
 		}
+	}
+
+	public function getEditAdminInfo($id){
+		$user = User::find($id);
+		return view('admin.user.editadmininfo',compact('user'));
+	}
+
+	public function postEditAdminInfo($id, EditUserRequest $request)
+	{
+		try{ 
+			$user = User::find($id);
+			$userinfo = UserInfo::where('id_user',$id)->first();
+			$user->level = $request->level;
+			$user->save();
+			$userinfo->name = $request->name;
+			$userinfo->address = $request->address;
+			$userinfo->phone_number = $request->phone_number;
+			$userinfo->date_of_birth = $request->date_of_birth;
+			$userinfo->sex = $request->sex;
+			$userinfo->save();
+			return redirect()->back()->with('success','Sửa thông tin thành công');
+		}catch(Exception $ex){
+			return redirect()->back()->with('error',$ex->getMessage());
+		}
+	}
+
+	public function ChangePass($id, Request $re)
+	{
+		$user = User::find($id);
+        if(Hash::check($re->oldpass, $user->password)){
+            //return $user;
+            $user->password = Hash::make($re->newpass);
+            $user->save();
+            return redirect()->back()->with('success','Đổi mật khẩu thành công');
+        }else{
+            return redirect()->back()->with('error', 'Mật khẩu cũ không đúng');
+        }
 	}
 
 }
