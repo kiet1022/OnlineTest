@@ -66,7 +66,7 @@
 		        <td>{{date('d/m/Y',strtotime($rt->created_at))}}</td>
 		        <td>{{$rt->test->time}}</td>
 		        <td>{{$rt->joined_time}}</td>
-		        <td>{{$rt->corect_number}}/{{$rt->test->number_question}}</td>
+		        <td>{{$rt->correct_number}}/{{$rt->test->number_question}}</td>
 		        <td>{{$rt->mark}}/{{$rt->test->mark}}</td>
 				<td><a href="{{route('get_test_detail',['id'=>$rt->id_test])}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Làm lại bài thi</a></td>
 		    </tr>

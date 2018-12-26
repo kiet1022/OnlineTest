@@ -24,14 +24,18 @@ class AddUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|min:6'
+            'email'=>'required|min:6|email',
+            'name'=>'required|min:6'
         ];
     }
 
     public function messages(){
         return [
             'email.required'=>'Bạn chưa nhập email',
-            'email.min'=>'Email phải có ít nhất 6 kí tự'  
+            'email.min'=>'Email phải có ít nhất 6 kí tự',
+            'email.email'=>'Vui lòng nhập đúng định dạng email',
+            'name.required'=>"Bạn chưa nhập tên",
+            'name.min'=>'Họ tên phải có ít nhất 6 kí tự'
         ];
     }
 }

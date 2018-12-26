@@ -6,8 +6,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin/usermangement" class="text-info">Trang chủ</a></li>
-    <li class="breadcrumb-item" aria-current="page">Quản lý người dùng</li>
-    <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
+    <li class="breadcrumb-item active" aria-current="page">Trang Admin</li>
   </ol>
 </nav>
 @if(session('success'))
@@ -15,98 +14,62 @@
     {{session('success')}}
 </div>
 @endif
-  <div class="row">
-      <div class="col-6">
-          <h4>Thống kê các bài thi</h4>
-          <table id="example" class="table table-striped table-bordered table-responsive" style="width:100%">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Loại tài khoản</th>
-                <th>Họ Tên</th>
-                <th>Ngày sinh</th>
-                <th>Giới tính</th>
-                <th>SĐT</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Kiệt</td>
-                <td>Gmail</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>0123456789</td>
-            </tr>
-            <tr>
-                <td>Kiệt</td>
-                <td>Gmail</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>0123456789</td>
-            </tr>
-            <tr>
-                <td>Kiệt</td>
-                <td>Gmail</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>0123456789</td>
-            </tr>
-        </tbody>
-    </table>
-      </div>
-      <div class="col-6">
-          <h4>Thống kê học viên</h4>
-          <table id="example1" class="table table-striped table-bordered table-responsive" style="width:100%">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Loại tài khoản</th>
-                <th>Họ Tên</th>
-                <th>Ngày sinh</th>
-                <th>Giới tính</th>
-                <th>SĐT</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Kiệt</td>
-                <td>Gmail</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>0123456789</td>
-            </tr>
-            <tr>
-                <td>Kiệt</td>
-                <td>Gmail</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>0123456789</td>
-            </tr>
-            <tr>
-                <td>Kiệt</td>
-                <td>Gmail</td>
-                <td>Admin</td>
-                <td>Dương Tuấn Kiệt</td>
-                <td>08/08/1997</td>
-                <td>Nam</td>
-                <td>0123456789</td>
-            </tr>
-        </tbody>
-    </table>
-      </div>
+<div class="container">
+    <div class="row">
+      <div class="card-deck mb-3" style="width: 100%;">
+        <div class="card bg-default">
+            <a href="{{route('get_edit_user',['id'=>$user->id])}}">      
+                <div class="card-body text-center">
+                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                </div>
+            </a>
+            <a href="{{route('get_edit_user',['id'=>$user->id])}}" class="card-footer bg-success btn btn-success text-white">Thông tin cá nhân</a>
+        </div>
+        <div class="card bg-default">
+            <a href="{{route('get_user_list')}}">      
+                <div class="card-body text-center">
+                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                </div>
+            </a>
+            <a href="{{route('get_user_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý người dùng</a>
+        </div>
+        <div class="card bg-default">
+            <a href="{{route('get_question_list')}}">      
+                <div class="card-body text-center">
+                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                </div>
+            </a>
+            <a href="{{route('get_question_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý câu hỏi</a>
+        </div>
   </div>
+  <div class="card-deck mb-3" style="width: 100%">
+      <div class="card bg-default">
+            <a href="{{route('get_test_list')}}">      
+                <div class="card-body text-center">
+                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                </div>
+            </a>
+            <a href="{{route('get_test_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý bài thi</a>
+        </div>
+        <div class="card bg-default">
+            <a href="{{route('get_news_list')}}">      
+                <div class="card-body text-center">
+                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                </div>
+            </a>
+            <a href="{{route('get_news_list')}}" class="card-footer bg-success btn btn-success text-white">Quản lý tin tức</a>
+        </div>
+        <div class="card bg-default">
+            <a href="{{route('get_test_statistic')}}">      
+                <div class="card-body text-center">
+                <img class="rounded-circle" src="images/admin.jpg" alt="">
+                </div>
+            </a>
+            <a href="{{route('get_test_statistic')}}" class="card-footer bg-success btn btn-success text-white">Thống kê</a>
+        </div>
+  </div>
+  </div>
+</div>
 @endsection
 @section('script')
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js" integrity="sha256-o8aByMEvaNTcBsw94EfRLbBrJBI+c3mjna/j4LrfyJ8=" crossorigin="anonymous"></script>

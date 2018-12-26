@@ -110,9 +110,7 @@ function changeRole($role){
 	$result = '';
 	if($role == 1){
 		$result = 'Quản trị viên';
-	}if($role == 2){
-		$result = 'Giáo viên';
-	}if($role == 3){
+	}if($role == 0){
 		$result = 'Thành viên';
 	}
 	return $result;

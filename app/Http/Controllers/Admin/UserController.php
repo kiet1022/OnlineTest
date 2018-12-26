@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Excel;
+use Maatwebsite\Excel\Facades\Excel;
 use App\User;
 use App\UserInfo;
 use App\NewsType;
@@ -19,14 +19,17 @@ use App\Http\Requests\AddNewQuestionRequest;
 use App\Http\Requests\AddNewTestRequest;
 use Exception;
 use Maatwebsite\Excel\Concerns\ToModel;
-use App\Imports\ImportQuestion;
+use App\Imports\ImpostUser;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
     //
     public function getAdminHomePage(){
-    	return view('admin.home');
+    	if(Auth::check()){
+    		$user = Auth::user();
+    	}
+    	return view('admin.home',compact('user'));
     }
 	public function getUserlist(){
 		if(Auth::check())
@@ -60,11 +63,62 @@ class UserController extends Controller
 
 			$userinfo = new UserInfo;
 			$userinfo->id_user = $user->id;
-         // $userinfo->name = $user->email;
+         	$userinfo->name = $request->name;
 			$userinfo->save();
 			return redirect()->back()->with('success','Thêm tài khoản thành công. Mật khẩu là 123456');
 		}catch(Exception $ex){
 			return redirect()->back()->with('error','Tài khoản đã tồn tại, vui lòng nhập địa chỉ email khác');
+		}
+	}
+
+	public function addUserByFile(Request $re){
+		if($re->hasFile('file')){
+			$file = $re->file('file');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'xls' && $duoi != 'xlsx'){
+                return redirect()->back()->with('error','Vui lòng chọn đúng định dạng file');
+            }
+            $array = (new ImpostUser)->toArray($file)[0];
+            //return $array;
+            try {
+            	foreach ($array as $row) {
+            		$user = New User;
+            	if(!is_null($row['Email'])){
+                    $user->email = $row['Email'];
+                }
+                if(!is_null($row['Level'])){
+            		$strLevel = explode('-', $row['Level']);
+                    $level =  (intval($strLevel[0]));
+                    $user->level = $level;
+                }
+                $user->password = bcrypt('123456');
+                $user->status = 0;
+                $user->updated_by = Auth::user()->id;
+                $user->save();
+                $info = New UserInfo;
+            	if(!is_null($row['Name'])){
+                    $info->name = $row['Name'];
+                }
+                if(!is_null($row['Address'])){
+                    $info->address = $row['Address'];
+                }
+                if(!is_null($row['Phone Number'])){
+                    $info->phone_number = $row['Phone Number'];
+                }
+                if(!is_null($row['Sex'])){
+                	$strSex = explode('-', $row['Sex']);
+                	$sex = intval($strSex[0]);
+                    $info->sex = $sex;
+                }
+                $info->id_user = $user->id;
+                $info->save();
+            	}
+                return redirect()->back()->with('success','Thêm người dùng thành công');
+            } catch (Exception $e) {
+            	return redirect()->back()->with('error',$e->getMessage());
+            }
+		}else{
+			return redirect()->back()->with('error','Bạn chưa chọn file');
 		}
 	}
 
@@ -93,7 +147,6 @@ class UserController extends Controller
 		try{ 
 			$user = User::find($id);
 			$userinfo = UserInfo::where('id_user',$id)->first();
-			$user->username = $request->username;
 			$user->level = $request->level;
 			$user->save();
 			$userinfo->name = $request->name;

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\User;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
@@ -50,6 +51,19 @@ class UserController extends Controller
     public function Logout(){
     	Auth::logout();
         return redirect()->route('get_home_page');
+    }
+
+    public function changePass($id, Request $re)
+    {
+        $user = User::find($id);
+        if(Hash::check($re->oldpass, $user->password)){
+            //return $user;
+            $user->password = Hash::make($re->newpass);
+            $user->save();
+            return redirect()->back()->with('success','Đổi mật khẩu thành công');
+        }else{
+            return redirect()->back()->with('error', 'Mật khẩu cũ không đúng');
+        }
     }
     //UPDATE User info
 }

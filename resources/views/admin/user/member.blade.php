@@ -15,10 +15,9 @@
     {{session('success')}}
 </div>
 @endif
-	<table id="example" class="table table-striped table-bordered table-responsive" style="width:100%">
+	<table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>Username</th>
                 <th>Email</th>
                 <th>Loại tài khoản</th>
                 <th>Họ Tên</th>
@@ -32,26 +31,25 @@
         <tbody>
             @foreach($user as $us)
             <tr>
-                <td>{{$us->username}}</td>
                 <td>{{$us->email}}</td>
                 <td>
                 @if($us->level == 1) 
-                    {{"Admin"}}
+                    {{trim("Admin")}}
                 @elseif($us->level == 2)
-                    {{"Giáo viên"}}
+                    {{trim("Giáo viên")}}
                 @else
-                    {{"Thành viên"}}
+                    {{trim("Thành viên")}}
                 @endif
                 </td>
                 <td>{{$us->info->name}}</td>
                 <td>{{$us->info->date_of_birth}}</td>
                 <td>
                 @if($us->info->sex == 1) 
-                    {{"Nam"}}
+                    {{trim("Nam")}}
                 @elseif($us->info->sex == 2)
-                    {{"Nữ"}}
+                    {{trim("Nữ")}}
                 @else
-                    {{"Khác"}}
+                    {{trim("Khác")}}
                 @endif   
                 </td>
                 <td>{{$us->info->phone_number}}</td>

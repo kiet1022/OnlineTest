@@ -14,32 +14,37 @@
 </nav>
 <div class="col-sm-8 offset-sm-2">
   @if(count($errors)>0)
-  <div class="alert alert-warning">
-    @foreach($errors->all() as $err)
-    {{$err}}<br>
-    @endforeach
-</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @foreach($errors->all() as $err)
+        {{$err}}<br>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @endforeach
+    </div>
 @endif
 
 @if(session('success'))
-<div class="alert alert-success">
-    {{session('success')}}
-</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{session('success')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 @endif
 
 @if(session('error'))
-<div class="alert alert-danger">
-    {{session('error')}}
-</div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{session('error')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 @endif
 <form action="{{ route('post_edit_user',['id'=>$user->id]) }}" method="post">
     @csrf
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="ipusername">Username</label>
-          <input type="text" class="form-control" id="ipusername" placeholder="Tên đăng nhập" value="{{$user->username}}" name="username">
-      </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
           <label for="ipemail">Email</label>
           <input type="email" class="form-control" id="ipemail" placeholder="Email" value="{{$user->email}}" name="email" readonly="">
       </div>
@@ -75,17 +80,12 @@
           <label for="iplevel">Phân quyền</label>
           <select name="level" id="iplevel" class="form-control">
               <option value="1" @if($user->level == 1) {{"selected"}} @endif>Quản trị viên</option>
-              <option value="2" @if($user->level == 2) {{"selected"}} @endif>Giáo viên</option>
-              <option value="3" @if($user->level == 3) {{"selected"}} @endif>Thành viên</option>
+              <option value="0" @if($user->level == 0) {{"selected"}} @endif>Thành viên</option>
           </select>
       </div>
   </div>
 <button type="submit" class="btn btn-primary">Lưu</button>
-<button type="button" class="btn btn-warning" onclick="resetpass()">Reset mật khẩu</button>
 </form>
-<div class="alert alert-warning mt-3 text-center" role="alert">
-    Sau khi mật khẩu sau khi reset là 123456
-</div>
 </div>
 @endsection
 

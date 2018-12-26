@@ -42,7 +42,7 @@
             <th>Đáp án B</th>
             <th>Đáp án C</th>
             <th>Đáp án D</th>
-            <th>Chủ đề</th>
+            {{-- <th>Chủ đề</th> --}}
             <th>Người tạo</th>
             <th></th>
             <th></th>
@@ -58,7 +58,7 @@
         <td {!!changeCorrectAnswerColor($qt->b,$qt->correct_answer)!!}>{{$qt->b}}</td>
         <td {!!changeCorrectAnswerColor($qt->c,$qt->correct_answer)!!}>{{$qt->c}}</td>
         <td {!!changeCorrectAnswerColor($qt->d,$qt->correct_answer)!!}>{{$qt->d}}</td>
-        <td>{{$qt->type->name}}</td>
+        {{-- <td>{{$qt->type->name}}</td> --}}
         <td>{{$qt->user->username}}</td>
         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('delete_question',['id'=>$qt->id])}}"> Xóa</a></td>
         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('get_edit_question',['id'=>$qt->id])}}"> Sửa</a></td>

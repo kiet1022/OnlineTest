@@ -26,6 +26,8 @@ Route::prefix('admin')->middleware('admin')->group(function() {
 		Route::get('adduser', 'Admin\UserController@getViewAddUser')->name('get_add_user');
 		//add new user
 		Route::post('adduser','Admin\UserController@addUser')->name('post_add_user');
+		//add user by Excel
+		Route::post('adduserbyfile','Admin\UserController@addUserByFile')->name('import_user_by_file');
 		//delete user
 		Route::get('deleteuser/{id}','Admin\UserController@deleteUser')->name('delete_user');
 		//View edit user page
@@ -102,6 +104,9 @@ Route::prefix('admin')->middleware('admin')->group(function() {
 	});
 	Route::prefix('statistic')->group(function(){
 		Route::get('test','Admin\StatisticController@testStatistic')->name('get_test_statistic');
+		Route::post('numberoftestbymonth','Admin\StatisticController@getNumberOfTestByMonth')->name('get_num_test_by_month');
+		Route::post('numberofjoinedtestbyyear','Admin\StatisticController@getNumberOfJoinedTestByYear')->name('get_num_joined_test_by_year');
+		Route::post('numberofjoinedtestbymonth','Admin\StatisticController@getNumberOfJoinedTestByMonth')->name('get_num_joined_test_by_month');
 	});
 });
 
@@ -119,6 +124,7 @@ Route::prefix('users')->middleware('user')->group(function(){
 		//View user info
 		Route::get('{id}', 'User\InfoController@getInfoPage')->name('get_user_info_page');
 		Route::post('{id}', 'User\InfoController@postEditInfo')->name('post_edit_userinfo');
+		Route::post('changePass/{id}','User\UserController@changePass')->name('changePass');
 	});
 	Route::prefix('forum')->group(function(){
 		//Forum
@@ -135,7 +141,7 @@ Route::prefix('users')->middleware('user')->group(function(){
 		Route::get('dislike','AjaxController@Dislike')->name('dislike');
 	});
 	Route::prefix('test')->group(function(){
-		Route::get('result/{iduser}','User\TestController@getTestResult')->name('get_user_test_result');
+		Route::get('result/{id}','User\TestController@getTestResult')->name('get_user_test_result');
 		Route::get('addtest','User\TestController@getAddTest')->name('get_add_test_by_user');
 		Route::post('addtest','User\TestController@postAddTest')->name('post_add_test_by_user');
 		Route::get('testadded','User\TestController@getTestAdded')->name('get_test_added');

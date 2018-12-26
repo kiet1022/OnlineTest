@@ -16,10 +16,10 @@
 					</div>
 					<!-- END SIDEBAR USER TITLE -->
 					<!-- SIDEBAR BUTTONS -->
-					<div class="profile-userbuttons">
+{{-- 					<div class="profile-userbuttons">
 						<button type="button" class="btn btn-success btn-sm">Follow</button>
 						<button type="button" class="btn btn-danger btn-sm">Message</button>
-					</div>
+					</div> --}}
 					<!-- END SIDEBAR BUTTONS -->
 					<!-- SIDEBAR MENU -->
 					<div class="profile-usermenu">
@@ -29,7 +29,7 @@
 									<i class="glyphicon glyphicon-home"></i>
 								Thông tin chung </a>
 							</li>
-							<li @if($check_page == 'addtest'){!!'class="active"'!!} @endif>
+	{{-- 						<li @if($check_page == 'addtest'){!!'class="active"'!!} @endif>
 								<a href="{{route('get_add_test_by_user')}}">
 									<i class="glyphicon glyphicon-user"></i>
 								Tạo bài thi </a>
@@ -38,17 +38,17 @@
 								<a href="{{route('get_test_added')}}">
 									<i class="glyphicon glyphicon-user"></i>
 								Các bài thi đã tạo </a>
-							</li>
+							</li> --}}
 							<li @if($check_page == 'result'){!!'class="active"'!!} @endif>
 								<a href="{{route('get_user_test_result',['iduser'=>$user->id])}}">
 									<i class="glyphicon glyphicon-ok"></i>
 								Bài thi </a>
 							</li>
-							<li>
+	{{-- 						<li>
 								<a href="#">
 									<i class="glyphicon glyphicon-flag"></i>
 								Help </a>
-							</li>
+							</li> --}}
 						</ul>
 					</div>
 					<!-- END MENU -->

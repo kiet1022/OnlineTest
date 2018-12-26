@@ -24,16 +24,12 @@ class EditUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|min:4|max:15',
             'name' =>'required'
         ];
     }
 
     public function messages(){
         return [
-            'username.required' => "Bạn chưa nhập username",
-            'username.min' => "Username phải có tối thiểu 4 kí tự",
-            'username.max' => "Username chỉ được tối đa 15 kí tự",
             'name.required'=>'Bạn chưa nhập họ tên'
         ];
     }

@@ -14,7 +14,7 @@
 @section('content')
 <div class="col-md-9" style="background: white; padding-top: 30px;">
 	@if(count($errors)>0)
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible show" role="alert">
         @foreach($errors->all() as $err)
         {{$err}}<br>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -25,7 +25,7 @@
     @endif
 
     @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible show" role="alert">
         {{session('success')}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -34,7 +34,7 @@
     @endif
 
     @if(session('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible show" role="alert">
         {{session('error')}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -78,19 +78,42 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+{{-- 			<div class="form-group">
 				<label class="control-label col-sm-2" for="avatar">Ảnh đại diện</label>
 				<div class="col-sm-10">
 					<img src="images/admin.jpg" alt="" style="border-radius: 50% !important; width: 20%;">
 					<input type="file" style="margin-top: 10px;">
 				</div>
-			</div>
+			</div> --}}
 			<div class="form-group">  
 				<div class="col-sm-offset-1 col-sm-10 text-center">
-					<button type="submit" class="btn btn-success">Lưu</button>
+					<button type="submit" class="btn btn-success" style="width: 150px;">Lưu</button>
+					<button type="button" class="btn btn-warning" style="width: 150px;" data-toggle="collapse" data-target="#demo">Đổi mật khẩu</button>
 				</div>
 			</div>
 		</form>
+			<div id="demo" class="collapse">
+				<form action="{{route('changePass',['id'=>$user->id])}}" method="POST" class="form-horizontal">
+					@csrf
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="newPass">Mật khẩu mới</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="newPass" name="newpass" placeholder="Vui lòng nhập mật khẩu mới">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="oldPass">mật khẩu cũ:</label>
+					<div class="col-sm-10">
+						<input type="password 	" class="form-control" id="oldPass" name="oldpass" placeholder="Vui lòng nhập mật khẩu cũ">
+					</div>
+				</div>
+				<div class="form-group">  
+					<div class="col-sm-offset-1 col-sm-10 text-center">
+						<button type="submit" class="btn btn-success" style="width: 150px;">Lưu</button>
+					</div>
+				</div>
+				</form>
+			</div>
 	</div>
 </div>
 @endsection

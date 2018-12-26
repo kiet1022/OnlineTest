@@ -17,9 +17,9 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use App\Imports\ImportQuestion;
 class TestController extends Controller
 {
-	function getTestResult($iduser){
-		$result = TestResult::where('id_user',$iduser)->get();
-		$user = User::find($iduser);
+	function getTestResult($id){
+		$result = TestResult::where('id_user',$id)->get();
+		$user = User::find($id);
 		$check_page = 'result';
 		return view('pages.user.user_test_result',compact('result','user','check_page'));
 	}
