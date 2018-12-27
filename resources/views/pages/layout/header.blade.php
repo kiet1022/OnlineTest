@@ -8,7 +8,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="{{route('get_home_page')}}" class="navbar-brand">LOGO</a>
+                    <a href="{{route('get_home_page')}}" class="navbar-brand">HIKI EDU</a>
                </div>
 
                <!-- MENU LINKS -->
