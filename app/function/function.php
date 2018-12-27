@@ -117,7 +117,7 @@ function changeRole($role){
 }
 function changeCorrectAnswerColor($answer, $correctAnswer){
 	$result = '';
-	if($answer == $correctAnswer){
+	if(trim($answer) == trim($correctAnswer)){
 		$result = 'data-toggle="tooltip" title="Đáp án đúng" data-placement="top" class="text-danger"';
 	}
 	return $result;
@@ -125,16 +125,16 @@ function changeCorrectAnswerColor($answer, $correctAnswer){
 
 function changeSelectedCorrectAnswer($question){
 	$option = '';
-	if($question->a == $question->correct_answer){
+	if(trim($question->a) == trim($question->correct_answer)){
 		$option = '<option value="A" selected>'.$question->a.'</option><option value="B">'.$question->b.'</option><option value="C">'.$question->c.'</option><option value="D">'.$question->d.'</option>';
 	}
-	if($question->b == $question->correct_answer){
+	if(trim($question->b) == trim($question->correct_answer)){
 		$option = '<option value="A">'.$question->a.'</option><option value="B" selected>'.$question->b.'</option><option value="C">'.$question->c.'</option><option value="D">'.$question->d.'</option>';
 	}
-	if($question->c == $question->correct_answer){
+	if(trim($question->c) == trim($question->correct_answer)){
 		$option = '<option value="A">'.$question->a.'</option><option value="B">'.$question->b.'</option><option value="C" selected>'.$question->c.'</option><option value="D">'.$question->d.'</option>';
 	}
-	if($question->d == $question->correct_answer){
+	if(trim($question->d) == trim($question->correct_answer)){
 		$option = '<option value="A">'.$question->a.'</option><option value="B">'.$question->b.'</option><option value="C">'.$question->c.'</option><option value="D" selected>'.$question->d.'</option>';
 	}
 	return $option;
@@ -142,7 +142,7 @@ function changeSelectedCorrectAnswer($question){
 
 function checkYourAnswer($option, $answer){
 	$result = "disabled";
-	if($answer == $option) {
+	if(trim($answer) == trim($option)) {
 		$result = "checked";
 	}
 	return $result;
@@ -150,7 +150,7 @@ function checkYourAnswer($option, $answer){
 
 function checkCorrectQuestion($answer, $corect){
 	$result ="";
-	if($answer == $corect){
+	if(trim($answer) == trim($corect)){
 		$result = '<span style="color: #29ca8e; margin-left: 10px;"><i class="fa fa-check"></i></span>';
 	}
 	return $result;

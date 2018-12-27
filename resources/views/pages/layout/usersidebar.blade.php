@@ -42,7 +42,7 @@
 							<li @if($check_page == 'result'){!!'class="active"'!!} @endif>
 								<a href="{{route('get_user_test_result',['iduser'=>$user->id])}}">
 									<i class="glyphicon glyphicon-ok"></i>
-								Bài thi </a>
+								Kết quả thi </a>
 							</li>
 	{{-- 						<li>
 								<a href="#">

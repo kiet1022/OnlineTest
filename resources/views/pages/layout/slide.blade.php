@@ -5,10 +5,10 @@
                          <div class="item item-first">
                               <div class="caption">
                                    <div class="container">
-                                        <div class="col-md-6 col-sm-12">
+                                        <div class="col-md-6 col-sm-12 text-white">
                                              <h1>Distance Learning Education Center</h1>
                                              <h3>Đăng nhập để khám phá bộ đề thi đa dạng rộng lớn của chúng tôi</h3>
-                                             <a href="./login.html" class="section-btn btn btn-default smoothScroll">Đăng nhập</a>
+                                             <a href="{{route('get_login_page')}}" class="section-btn btn btn-default smoothScroll">Đăng nhập</a>
                                         </div>
                                    </div>
                               </div>
@@ -17,10 +17,10 @@
                          <div class="item item-second">
                               <div class="caption">
                                    <div class="container">
-                                        <div class="col-md-6 col-sm-12">
-                                             <h1>Start your journey with our practical courses</h1>
-                                             <h3>Our online courses are built in partnership with technology leaders and are designed to meet industry demands.</h3>
-                                             <a href="#courses" class="section-btn btn btn-default smoothScroll">Take a course</a>
+                                        <div class="col-md-6 col-sm-12 text-white">
+                                             <h1>Tham gia vào ngân hàng đề thi THPTQG môn Tiếng anh</h1>
+                                             <h3>Hàng ngàn đề thi chọn lọc đang chờ bạn khám phá</h3>
+                                             <a href="{{route('get_test_list_user')}}" class="section-btn btn btn-default smoothScroll">Làm bài thi</a>
                                         </div>
                                    </div>
                               </div>
@@ -29,10 +29,9 @@
                          <div class="item item-third">
                               <div class="caption">
                                    <div class="container">
-                                        <div class="col-md-6 col-sm-12">
-                                             <h1>Efficient Learning Methods</h1>
-                                             <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero. Visit <a href="https://plus.google.com/+templatemo" target="_parent">templatemo</a> page.</h3>
-                                             <a href="#contact" class="section-btn btn btn-default smoothScroll">Let's chat</a>
+                                        <div class="col-md-6 col-sm-12 text-white">
+                                             <h1>Nhanh tay đăng kí tham gia học tại trung tâm nhé</h1>
+                                             <h3>Còn chần chờ gì nữa mà không đăng kí học tại trung tâm HiKi nào các bạn ơi</h3>
                                         </div>
                                    </div>
                               </div>

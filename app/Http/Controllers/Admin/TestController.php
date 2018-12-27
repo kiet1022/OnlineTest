@@ -52,6 +52,12 @@ class TestController extends Controller
         $results = TestResult::where('id_test',$id)->get();
         return view('admin.test.test_result',compact('test','results'));
     }
+
+    function PreviewTest($id){
+        $test = Tests::find($id);
+        $detail = $test->detail;
+        return view('pages.user.preview_test',compact('test','detail'));
+    }
     //INSERT
 
     public function postAddNewTestFromBank(Request $request){
@@ -120,7 +126,7 @@ class TestController extends Controller
                         $question->c = trim($row['c']);
                         $question->d = trim($row['d']);
                         $question->correct_answer = trim($row['Correct']);
-                        $question->status = 1;
+                        $question->status = 0;
                         $question->owner = Auth::user()->id;
                         $question->save();
                         //insert question into detail table
@@ -212,9 +218,6 @@ class TestController extends Controller
     }
 
     //DELETE
-
-
-
     public function deleteTest($id){
         try{
             $test = Tests::find($id);

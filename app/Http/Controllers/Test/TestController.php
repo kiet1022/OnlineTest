@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostForumRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\News;
 use App\Questions;
 use App\Tests;
@@ -58,11 +59,6 @@ class TestController extends Controller
     }
 
     public function submitAttempt($idtest, Request $re){
-        // $test = Tests::find($idtest);
-        // $minute = $test->time - $re->minute;
-        // $second = 60 - $re->second;
-
-        // return $minute."------".$second;
         try {
         $attemp = $re;
         $test = Tests::find($idtest);
@@ -74,7 +70,7 @@ class TestController extends Controller
             if(empty($re->answer_for_question_[$i])){
                 $totalMark+=0;
             }else {
-                if($testDetail[$i]->question->correct_answer == $re->answer_for_question_[$i]){
+                if(trim($testDetail[$i]->question->correct_answer) == trim($re->answer_for_question_[$i])){
                 $totalMark += $markPerQuestion;
                 $correct++;
                 }
@@ -105,5 +101,24 @@ class TestController extends Controller
         } catch (Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    public function FindTest(Request $request){
+        $keyword = $request->keyword;
+        return redirect()->route('find_test', ['keyword' => $keyword]);
+    }
+    public function FindTheTest($keyword) {
+
+
+         //$tests = Tests::where('title','like',"%$keyword%")->orWhere('time','like',"%$keyword%")->orWhere('number_question','like',"%$keyword%")->having('status',0)->take(10)->paginate(5);
+        $tests = Tests::where(function($query) use($keyword) {
+            $query->where('title', 'LIKE', '%'.$keyword.'%')->orWhere('time', 'LIKE', '%' .$keyword. '%')
+            ->orWhere('number_question', 'LIKE', '%' . $keyword . '%');
+        })->where('status', 0)->take(20)->paginate(4);
+        
+
+        //$tests = DB::select('call findtest(?)', ["%$keyword%"]);
+        //return $tests;
+        return view('pages.test.test_find_result',compact('tests','keyword'));
     }
 }

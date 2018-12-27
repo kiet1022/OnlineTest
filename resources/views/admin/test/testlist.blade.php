@@ -55,7 +55,7 @@
        @foreach($tests as $test)
        <tr>
         <td>{{$test->id}}</td>
-        <td><a href="{{route('get_test_preview',['id'=>$test->id])}}" target="_blank">{{$test->title}}</a></td>
+        <td><a href="{{route('preview_test_admin',['id'=>$test->id])}}" target="_blank">{{$test->title}}</a></td>
         <td>{{$test->number_question}}</td>
         <td>{{$test->mark}}</td>
         <td>{{$test->time}} phút</td>

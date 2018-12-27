@@ -17,16 +17,16 @@
                @csrf
                <input type="email" name="email" placeholder="EMAIL" required="">
                <input type="password" name="password" placeholder="PASSWORD" required="">
-               <ul class="agileinfotickwthree">
+{{--                <ul class="agileinfotickwthree">
                     <li>
                          <input type="checkbox" id="brand1" value="">
                          <label for="brand1"><span></span>Nhớ mật khẩu</label>
                          <a href="#">Quên mật khẩu</a>
                     </li>
-               </ul>
+               </ul> --}}
                <div class="aitssendbuttonw3ls">
                     <input type="submit" value="LOGIN">
-                    <p> Bạn chưa có tài khoản? <span>→</span> <a class="w3_play_icon1" href="{{route('get_register_page')}}">Nhấn vào đây</a></p>
+                    {{-- <p> Bạn chưa có tài khoản? <span>→</span> <a class="w3_play_icon1" href="{{route('get_register_page')}}">Nhấn vào đây</a></p> --}}
                     <div class="clear"></div>
                </div>
           </form>

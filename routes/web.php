@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-	return view('pages.home');
-})->name('get_home_page');
+Route::get('/','User\UserController@GetHomePage')->name('get_home_page');
 
 
 
@@ -106,6 +104,7 @@ Route::prefix('admin')->middleware('admin')->group(function() {
 		Route::get('deleteTest/{id}','Admin\TestController@deleteTest')->name('delete_test');
 		Route::get('confirm/{id}','Admin\TestController@confirmTest')->name('confirm_test');
 		Route::get('result/{id}', 'Admin\TestController@testResult')->name('get_test_result');
+		Route::get('preview/{id}','Admin\TestController@PreviewTest')->name('preview_test_admin');
 	});
 	Route::prefix('statistic')->group(function(){
 		Route::get('test','Admin\StatisticController@testStatistic')->name('get_test_statistic');
@@ -179,6 +178,9 @@ Route::prefix('test')->group(function(){
 	Route::get('join-again/{id}','Test\TestController@joinTestAgain')->name('join_test_again');
 	//Show test result
 	//Route::get('result/{idtest}/{iduser}','TestController@getTestResult')->name('get_test_result');
+	//Find test
+	Route::get('findtest','Test\TestController@FindTest')->name('get_find_test');
+	Route::get('findtest/{keyword}','Test\TestController@FindTheTest')->name('find_test');
 });
 
 

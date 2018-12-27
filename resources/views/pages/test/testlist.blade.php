@@ -14,7 +14,7 @@
 {{"Danh sách bài thi"}}
 @endsection
 @section('content')
-	<section style="padding-top: 20px; padding-bottom: 20px;" class="content">
+	<section style="padding-top: 20px; padding-bottom: 20px;" class="content" id="test">
 		<div class="container" style="margin-top: 20px;">
 			<div class="row">
 				<div class="col-lg-12 col-md-12">
@@ -25,6 +25,18 @@
 					</ol>
 					{{-- breadcrumb --}}
 				</div>
+				
+				<div class="col-lg-12 col-md-12">
+					<form action="{{route('get_find_test')}}" method="get">
+						@csrf
+						<div class="form-group col-md-5">
+							<input type="text" placeholder="Tìm kiếm bài thi" name="keyword" class="form-control">
+						</div>
+						<div class="form-group col-md-2">
+							<button class="btn btn-success" type="submit">Tìm kiếm</button>
+						</div>
+					</form>
+				</div>	
 
 				<div class="col-lg-12 col-md-12">
 					@foreach($tests as $p)
@@ -34,7 +46,7 @@
 						<div class="wrap-ut pull-left">
 							<div class="userinfo pull-left">
 								<div class="avatar">
-									<img src="pages/images/forum/avatar.jpg" alt="" />
+									<img src="images/test.png" alt="" width="100%" />
 									<div class="status green">&nbsp;</div>
 								</div>
 

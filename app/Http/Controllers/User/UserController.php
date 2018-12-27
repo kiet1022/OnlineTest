@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Tests;
+use App\News;
 use App\UserInfo;
 use Exeption;
 class UserController extends Controller
 {
+    public function GetHomePage()
+    {
+        $tests = Tests::where('participant_number','>=',10)->take(4)->get();
+        $new_news = News::with('newstype')->orderBy('id','Desc')->take(6)->get();
+        return view('pages.home',compact('tests','new_news'));
+    }
 	//GET VIEW
     public function getRegisterPage(){
     	return view('pages.register');

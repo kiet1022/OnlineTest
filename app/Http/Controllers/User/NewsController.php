@@ -21,7 +21,7 @@ class NewsController extends Controller
     	$news = News::with('newstype')->take(4)->inRandomOrder()->get();
     	$hot_news = News::with('newstype')->inRandomOrder()->first();
     	$most_read = News::with('newstype')->where('view_number','>=',50)->inRandomOrder()->take(8)->get();
-    	$new_news = News::with('newstype')->take(6)->get();
+        $new_news = News::with('newstype')->orderBy('id','Desc')->take(6)->get();
     	$newtype = NewsType::with('news')->inRandomOrder()->take(10)->get();
     	return view('pages.news.newshome',compact('news','hot_news','most_read','new_news','newtype'));
     }

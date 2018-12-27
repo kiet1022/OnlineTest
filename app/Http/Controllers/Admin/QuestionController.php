@@ -99,7 +99,7 @@ class QuestionController extends Controller
         try{
             $ques = Questions::find($id);
             $ques->content = $request->content;
-            $ques->id_type = $request->id_type;
+            //$ques->id_type = $request->id_type;
             $ques->a = $request->a;
             $ques->b = $request->b;
             $ques->c = $request->c;
@@ -146,34 +146,17 @@ class QuestionController extends Controller
             try {
                 foreach ($array as $row) {
                     $question = New Questions;
-                    if(!is_null($row['Content'])){
+                    if(!is_null($row['Content']) && !is_null($row['a']) && !is_null($row['b']) && !is_null($row['c']) && !is_null($row['d']) && !is_null($row['Correct'])){
                         $question->content = $row['Content'];
+                        $question->a = trim($row['a']);
+                        $question->b = trim($row['b']);
+                        $question->c = trim($row['c']);
+                        $question->d = trim($row['d']);
+                        $question->correct_answer = trim($row['Correct']);
+                        $question->status = 0;
+                        $question->owner = Auth::user()->id;
+                        $question->save();
                     }
-                    if(!is_null($row['Type'])){
-                        $strType = explode(' ', $row['Type']);
-                        $type =  (intval($strType[0]));
-                        $question->id_type = $type;
-                    }
-                    if(!is_null($row['a'])){
-                        $question->a = $row['a'];
-                    }
-                    if(!is_null($row['b'])){
-                        $question->b = $row['b'];
-                    }
-                    if(!is_null($row['c'])){
-                        $question->c = $row['c'];
-                    }
-                    if(!is_null($row['d'])){
-                        $question->d = $row['d'];
-                    }
-                    if(!is_null($row['Correct'])){
-                        $question->correct_answer = $row['Correct'];
-                    }
-                    if(!is_null($row['Status'])){
-                        $question->status = $row['Status'];
-                    }
-                    $question->owner = Auth::user()->id;
-                    $question->save();
                 }
                 return redirect()->back()->with('success','Thêm câu hỏi thành công');
             } catch (Exception $ex) {

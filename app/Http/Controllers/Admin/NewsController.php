@@ -87,6 +87,7 @@ class NewsController extends Controller
 
 	public function getEditNews($id){
 		$news = News::find($id);
+		//return $news;
 		return view('admin.news.editnews',compact('news'));
 	}
 
@@ -108,13 +109,14 @@ class NewsController extends Controller
 				}
 				$name = $file->getClientOriginalName();
 				$image = str_random(4)."_".$name;
-				while (file_exists("images/tintuc/".$image)) {
-					$image = str_random(4)."_".$name;
-				}
+				// while (file_exists("images/tintuc/".$image)) {
+				// 	$image = str_random(4)."_".$name;
+				// }
 				$file->move("images/tintuc",$image);
-				if(file_exists("images/tintuc/".$news->image)){
-					unlink("images/tintuc/".$news->image);
-				}
+				// if(file_exists("images/tintuc/".$news->image)){
+				// 	return "images/tintuc/".$news->image;
+				// 	unlink("images/tintuc/".$news->image);
+				// }
 				$news->image = $image;
 			}else{
 				$news->image = $news->image;
